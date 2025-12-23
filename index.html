@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SCOPD - Light UI</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <video class="bg-video" autoplay muted loop playsinline>
+        <source src="img/video.mp4" type="video/mp4">
+    </video>
+
+    <a href="#" class="logo-link">
+        <div class="pill-nav logo-pill glass-effect">
+            <img src="img/big-logo.png" alt="Logo">
+        </div>
+    </a>
+
+    <div class="nav-wrapper">
+        <nav class="pill-nav main-nav glass-effect">
+            <div class="nav-item" data-target="company">
+                Company <span class="arrow">⌄</span>
+            </div>
+            <div class="nav-item active" data-target="resources">
+                Resources <span class="arrow">⌄</span>
+            </div>
+            <div class="nav-item" data-target="contact">
+                Contact us <span class="arrow">⌄</span>
+            </div>
+            <div class="nav-item simple">Partners</div>
+            <div class="nav-item simple">Request Demo</div>
+        </nav>
+
+        <div class="submenu-container">
+
+            <div id="company" class="pill-nav sub-nav glass-effect">
+                <div class="nav-item icon-item"><span class="icon">❶</span> About us</div>
+                <div class="nav-item icon-item"><span class="icon">❶</span> Use Cases</div>
+            </div>
+
+            <div id="resources" class="pill-nav sub-nav glass-effect active-sub">
+                <div class="nav-item icon-item"><span class="icon">❶</span> Calculator</div>
+                <div class="nav-item icon-item"><span class="icon">❶</span> Help & Support</div>
+                <div class="nav-item icon-item"><span class="icon">❶</span> Blog</div>
+            </div>
+
+            <div id="contact" class="pill-nav sub-nav glass-effect">
+                <div class="nav-item icon-item"><span class="icon">❶</span> Reach Out</div>
+                <div class="nav-item icon-item"><span class="icon">❶</span> Schedule a Meeting</div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

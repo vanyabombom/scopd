@@ -1,0 +1,209 @@
+@font-face {
+    font-family: 'Volte';
+    src: url('fonts/Volte-Medium.woff2') format('woff2'),
+        url('fonts/Volte-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+}
+
+.bg-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+body {
+    font-family: 'Volte', 'Inter', sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #ffffff;
+    /* Чисто белый фон */
+    display: flex;
+    justify-content: center;
+    /* Центрируем контент по горизонтали */
+    align-items: flex-start;
+    /* Прижимаем контент к верху */
+    min-height: 100vh;
+    color: #333;
+    /* Темный текст */
+}
+
+/* === ЛОГОТИП === */
+.logo-link {
+    position: absolute;
+    top: 30px;
+    /* Отступ сверху такой же, как у меню */
+    left: 40px;
+    /* Отступ от левого края */
+    z-index: 1000;
+    text-decoration: none;
+}
+
+.logo-pill {
+    /* Увеличиваем паддинг, чтобы лого не было зажатым */
+    padding: 12px 25px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-pill img {
+    height: 32px;
+    /* Чуть увеличил размер лого */
+    width: auto;
+    display: block;
+    /* Если логотип был белым, убираем invert, чтобы он стал темным, или наоборот. 
+       Сейчас настроено на обычное отображение. */
+}
+
+/* === ОБЕРТКА МЕНЮ === */
+.nav-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-top: 10px;
+    /* Небольшой отступ от самого верха экрана */
+    position: relative;
+    z-index: 10;
+}
+
+/* === СВЕТЛЫЙ СТЕКЛЯННЫЙ ЭФФЕКТ === */
+.glass-effect {
+    /* Светлый полупрозрачный фон */
+    background: rgba(245, 245, 245, 0.7);
+
+    /* Блюр фона */
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+
+    /* Тонкая серая рамка */
+    border: 1px solid rgba(0, 0, 0, 0.08);
+
+    /* Мягкая тень */
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+}
+
+.pill-nav {
+    border-radius: 9999px;
+    padding: 6px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    transition: all 0.3s ease;
+}
+
+.nav-item {
+    padding: 10px 24px;
+    border-radius: 9999px;
+    cursor: pointer;
+    color: #555;
+    font-weight: 500;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    user-select: none;
+    position: relative;
+    border: 1px solid transparent;
+}
+
+.nav-item:hover:not(.active) {
+    background-color: rgba(0, 0, 0, 0.05);
+    color: #000;
+}
+
+.nav-item.active {
+    background-color: #fff;
+    color: #000;
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transform: scale(1.02);
+}
+
+.arrow {
+    font-size: 10px;
+    opacity: 0.5;
+    transition: transform 0.3s;
+}
+
+.nav-item:hover .arrow {
+    opacity: 1;
+}
+
+/* === ПОДМЕНЮ === */
+/* === ПОДМЕНЮ === */
+.sub-nav {
+    display: none;
+    animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 5px;
+    /* Немного отступа внутри контейнера */
+}
+
+/* Обычное состояние пункта */
+.sub-nav .nav-item {
+    padding: 8px 20px;
+    font-size: 14px;
+    /* Делаем их овальными, как и основное меню */
+    border-radius: 9999px;
+    margin: 2px 4px;
+
+    /* ВАЖНО: Сразу задаем прозрачную рамку, чтобы элемент не скакал при ховере */
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
+}
+
+/* === ХОВЕР ПО КОНТУРУ === */
+.sub-nav .nav-item:hover {
+    /* Сделали заливку цельной */
+    background-color: rgba(246, 196, 165, 1);
+
+    /* Рамка такого же цвета */
+    border-color: rgba(246, 196, 165, 1);
+
+    color: #000;
+    transform: translateY(-1px);
+    /* Легкое всплытие для эффекта */
+}
+
+/* При наведении иконка чуть увеличивается */
+.sub-nav .nav-item:hover .icon {
+    transform: scale(1.1);
+    transition: transform 0.2s;
+}
+
+.active-sub {
+    display: inline-flex;
+    flex-direction: row;
+    /* В ряд, как на скрине */
+}
+
+.icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    background: #000;
+    color: #fff;
+    border-radius: 50%;
+    font-size: 10px;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px) scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}

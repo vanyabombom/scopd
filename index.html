@@ -14,59 +14,71 @@
         <source src="img/video.mp4" type="video/mp4">
     </video>
 
-    <a href="#" class="logo-link">
-        <div class="pill-nav logo-pill glass-effect">
-            <img src="img/big-logo.png" alt="Logo">
+    <section class="hero-section">
+        <a href="#" class="logo-link">
+            <div class="pill-nav logo-pill glass-effect">
+                <img src="img/big-logo.png" alt="Logo" class="logo-big">
+                <img src="img/small-logo.png" alt="Logo" class="logo-small">
+            </div>
+        </a>
+
+        <!-- Кнопка "Menu", появляющаяся при скролле -->
+        <div class="menu-toggle glass-effect">
+            Menu
         </div>
-    </a>
 
-    <div class="nav-wrapper">
-        <nav class="pill-nav main-nav glass-effect">
-            <div class="nav-item" data-target="company">
-                Company <svg class="arrow" width="10" height="6" viewBox="0 0 10 6" fill="none"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                        stroke-linejoin="round" />
-                </svg>
-            </div>
-            <div class="nav-item active" data-target="resources">
-                Resources <svg class="arrow" width="10" height="6" viewBox="0 0 10 6" fill="none"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                        stroke-linejoin="round" />
-                </svg>
-            </div>
-            <div class="nav-item" data-target="contact">
-                Contact us <svg class="arrow" width="10" height="6" viewBox="0 0 10 6" fill="none"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                        stroke-linejoin="round" />
-                </svg>
-            </div>
-            <div class="nav-item simple">Partners</div>
-            <div class="nav-item simple">Request Demo</div>
-        </nav>
+        <div class="nav-wrapper">
+            <nav class="pill-nav main-nav glass-effect">
+                <div class="nav-item" data-target="company">
+                    Company <svg class="arrow" width="10" height="6" viewBox="0 0 10 6" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </div>
+                <div class="nav-item active" data-target="resources">
+                    Resources <svg class="arrow" width="10" height="6" viewBox="0 0 10 6" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </div>
+                <div class="nav-item" data-target="contact">
+                    Contact us <svg class="arrow" width="10" height="6" viewBox="0 0 10 6" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </div>
+                <div class="nav-item simple">Partners</div>
+                <div class="nav-item simple">Request Demo</div>
+            </nav>
 
-        <div class="submenu-container">
+            <div class="submenu-container">
 
-            <div id="company" class="pill-nav sub-nav glass-effect">
-                <div class="nav-item icon-item"><span class="icon">❶</span> About us</div>
-                <div class="nav-item icon-item"><span class="icon">❶</span> Use Cases</div>
+                <div id="company" class="pill-nav sub-nav glass-effect">
+                    <div class="nav-item icon-item"><span class="icon">❶</span> About us</div>
+                    <div class="nav-item icon-item"><span class="icon">❶</span> Use Cases</div>
+                </div>
+
+                <div id="resources" class="pill-nav sub-nav glass-effect active-sub">
+                    <div class="nav-item icon-item"><span class="icon">❶</span> Calculator</div>
+                    <div class="nav-item icon-item"><span class="icon">❶</span> Help & Support</div>
+                    <div class="nav-item icon-item"><span class="icon">❶</span> Blog</div>
+                </div>
+
+                <div id="contact" class="pill-nav sub-nav glass-effect">
+                    <div class="nav-item icon-item"><span class="icon">❶</span> Reach Out</div>
+                    <div class="nav-item icon-item"><span class="icon">❶</span> Schedule a Meeting</div>
+                </div>
+
             </div>
-
-            <div id="resources" class="pill-nav sub-nav glass-effect active-sub">
-                <div class="nav-item icon-item"><span class="icon">❶</span> Calculator</div>
-                <div class="nav-item icon-item"><span class="icon">❶</span> Help & Support</div>
-                <div class="nav-item icon-item"><span class="icon">❶</span> Blog</div>
-            </div>
-
-            <div id="contact" class="pill-nav sub-nav glass-effect">
-                <div class="nav-item icon-item"><span class="icon">❶</span> Reach Out</div>
-                <div class="nav-item icon-item"><span class="icon">❶</span> Schedule a Meeting</div>
-            </div>
-
         </div>
-    </div>
+    </section>
+
+    <section class="gradient-section">
+        <!-- Content will go here later, for now just background -->
+    </section>
 
     <script src="script.js"></script>
 </body>

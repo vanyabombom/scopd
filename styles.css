@@ -11,21 +11,16 @@
 .layout-wrapper {
     font-family: 'Volte', 'Inter', sans-serif;
     margin: 0;
-    padding: 20px;
+    padding: 0;
     background-color: #ffffff;
-    /* Чисто белый фон */
-    display: flex;
-    justify-content: center;
-    /* Центрируем меню по горизонтали */
-    align-items: flex-start;
-    /* Прижимаем к верху */
-    min-height: 100vh;
+
+    height: 100%;
     color: #333;
     overflow-x: hidden;
+    position: relative;
+    display: block;
 }
 
-/* Если видео не нужно — этот блок можно удалить, 
-   но я оставил его скрытым на случай возврата */
 .bg-video {
     /* display: none; */
     position: fixed;
@@ -41,41 +36,191 @@
 
 
 
+/* === СЕКЦИЯ ГЕРОЯ (Первый экран) === */
+.hero-section {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 20px;
+    /* Бывший padding body */
+    position: relative;
+    box-sizing: border-box;
+}
+
+/* === СЛЕДУЮЩАЯ СЕКЦИЯ (Градиент) === */
+/* === СЛЕДУЮЩАЯ СЕКЦИЯ (Градиент) === */
+.gradient-section {
+    min-height: 100vh;
+    width: 100%;
+    position: relative;
+
+    /* Базовый персиковый цвет */
+    background-color: rgba(246, 194, 161, 1);
+
+    /* Градиенты:
+       1. Желтый в левом верхнем углу (яркое свечение)
+       2. Желтый в правом нижнем углу (мягче)
+       3. Общий шум или мягкость можно добавить через blend-mode, но пока просто слои
+    */
+    background-image:
+        radial-gradient(circle at 10% 20%, rgba(252, 241, 132, 1) 0%, rgba(246, 194, 161, 0) 50%),
+        radial-gradient(circle at 90% 80%, rgba(252, 241, 132, 0.8) 0%, rgba(246, 194, 161, 0) 50%);
+
+    background-size: 100% 100%;
+}
+
 /* === ЛОГОТИП === */
 .logo-link {
-    position: absolute;
+    position: fixed;
     top: 30px;
-    /* На одной линии с меню */
     left: 40px;
     z-index: 1000;
     text-decoration: none;
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transform-origin: top left;
+}
+
+/* Состояние при скролле - трансформация больше не нужна, меняем картинки */
+body.scrolled .logo-link {
+    transform: none;
+    /* Убираем scale */
 }
 
 .logo-pill {
-    /* Увеличенный паддинг, чтобы логотип "дышал" */
     padding: 12px 25px !important;
     display: flex;
     align-items: center;
     justify-content: center;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+
+    position: relative;
+    /* Для наложения логотипов */
 }
 
+/* Стили для смены логотипов */
 .logo-pill img {
     height: 32px;
     width: auto;
     display: block;
+    transition: opacity 0.4s ease;
+}
+
+/* Состояние при скролле (Логотип - кружок) */
+body.scrolled .logo-pill {
+    padding: 0 !important;
+    width: 60px;
+    /* Фиксированный размер */
+    height: 60px;
+    border-radius: 50%;
+    /* Полный круг */
+}
+
+body.scrolled .logo-pill img {
+    height: 20px;
+    /* Уменьшаем сам логотип внутри круга */
+}
+
+.logo-big {
+    opacity: 1;
+}
+
+.logo-small {
+    position: absolute;
+    opacity: 0;
+}
+
+/* При скролле меняем прозрачность */
+body.scrolled .logo-big {
+    opacity: 0;
+}
+
+body.scrolled .logo-small {
+    opacity: 1;
 }
 
 /* === ОБЕРТКА МЕНЮ (Главный контейнер) === */
 .nav-wrapper {
+    position: fixed;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     /* Важно для JS-выравнивания */
     gap: 15px;
-    margin-top: 10px;
-    position: relative;
+    margin-top: 0;
     /* Якорь для абсолютного подменю */
     z-index: 10;
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        opacity 0.3s ease;
+}
+
+/* Состояние при скролле (Навигация уезжает вправо) */
+body.scrolled .nav-wrapper {
+    transform: translateX(100px);
+    /* Уезжает вправо */
+    opacity: 0;
+    pointer-events: none;
+    /* Чтобы нельзя было кликнуть */
+}
+
+/* === КНОПКА МЕНЮ (Появляется при скролле) === */
+.menu-toggle {
+    position: fixed;
+    top: 30px;
+    right: 40px;
+    padding: 12px 24px;
+    border-radius: 9999px;
+    cursor: pointer;
+    background-color: #1a1a1a;
+    color: #fff;
+    font-weight: 500;
+    z-index: 1000;
+
+    /* Скрыта по умолчанию */
+    opacity: 0;
+    transform: translateX(50px);
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    pointer-events: none;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+}
+
+/* Состояние при скролле (Кнопка меню - кружок) */
+body.scrolled .menu-toggle {
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: all;
+
+    width: 60px;
+    /* Круглый размер */
+    height: 60px;
+    padding: 0;
+    border-radius: 50%;
+    font-size: 0;
+    /* Скрываем текст "Menu" */
+}
+
+/* Иконка бургера (добавляем псевдоэлемент) */
+body.scrolled .menu-toggle::after {
+    content: "";
+    display: block;
+    width: 16px;
+    height: 2px;
+    background: #fff;
+    box-shadow: 0 -5px 0 #fff, 0 5px 0 #fff;
+    /* Линии сверху и снизу */
+    font-size: 0;
 }
 
 /* === СТИЛЬ "ЖИДКОЕ СТЕКЛО" (Glassmorphism) === */

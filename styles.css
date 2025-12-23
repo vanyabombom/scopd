@@ -8,7 +8,7 @@
 }
 
 /* === БАЗОВЫЕ НАСТРОЙКИ === */
-body {
+.layout-wrapper {
     font-family: 'Volte', 'Inter', sans-serif;
     margin: 0;
     padding: 20px;

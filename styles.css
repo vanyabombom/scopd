@@ -131,9 +131,12 @@ body {
 }
 
 .arrow {
-    font-size: 10px;
-    opacity: 0.5;
+    width: 10px;
+    height: 6px;
+    opacity: 0.8;
     transition: transform 0.3s;
+    /* Убираем top, для SVG выравнивание обычно лучше через flex родителя (nav-item) */
+    display: block;
 }
 
 .nav-item:hover .arrow {
@@ -141,6 +144,9 @@ body {
 }
 
 .nav-item.active .arrow {
+    /* Поскольку мы подняли стрелку через top: -2px, 
+       при повороте она может вести себя странно, 
+       но relative top работает независимо от transform, так что всё ок */
     transform: rotate(180deg);
 }
 

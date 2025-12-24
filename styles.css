@@ -266,7 +266,7 @@
 
 .func-cards-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 20px;
     margin-bottom: 40px;
 }
@@ -281,10 +281,12 @@
 
 .func-card-title {
     font-family: 'Unbounded', sans-serif;
-    font-size: 48px;
+    font-size: 36px;
     font-weight: 700;
     color: rgba(18, 14, 12, 1);
     margin-bottom: 10px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 .func-card-text {
@@ -1013,6 +1015,19 @@ body.scrolled .menu-toggle::after {
     text-align: center;
 }
 
+.business-card-centered {
+    text-align: left;
+    align-items: flex-start;
+}
+
+.business-card-centered .business-icon {
+    align-self: flex-start;
+}
+
+.business-card-centered .business-card-title {
+    margin-top: 15px;
+}
+
 .business-description {
     font-size: 18px;
     line-height: 1.6;
@@ -1033,23 +1048,23 @@ body.scrolled .menu-toggle::after {
 }
 
 .business-icon.cloud-icon {
-    background: rgba(250, 180, 130, 0.15);
+    border: 1px solid rgba(250, 180, 130, 0.5);
 }
 
 .business-icon.star-icon {
-    background: rgba(252, 241, 132, 0.15);
+    border: 1px solid rgba(252, 241, 132, 0.5);
 }
 
 .business-icon.diamond-icon {
-    background: rgba(252, 241, 132, 0.15);
+    border: 1px solid rgba(252, 241, 132, 0.5);
 }
 
 .business-icon.circle-icon {
-    background: rgba(252, 241, 132, 0.15);
+    border: 1px solid rgba(252, 241, 132, 0.5);
 }
 
 .business-icon.heart-icon {
-    background: rgba(250, 180, 130, 0.15);
+    border: 1px solid rgba(250, 180, 130, 0.5);
 }
 
 .business-icon svg {

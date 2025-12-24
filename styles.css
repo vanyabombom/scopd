@@ -13,6 +13,27 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'Unbounded';
+    src: url('fonts/Unbounded-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Unbounded';
+    src: url('fonts/Unbounded-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Unbounded';
+    src: url('fonts/Unbounded-Black.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+}
+
 .layout-wrapper {
     font-family: 'Volte', 'Inter', sans-serif;
     margin: 0;
@@ -57,6 +78,219 @@
         radial-gradient(circle at 50% 60%, rgba(255, 160, 100, 0.4) 0%, transparent 55%);
     background-size: 100% 100%;
     z-index: 1;
+    padding: 120px 0;
+}
+
+.gradient-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* HERO BLOCK */
+.hero-block {
+    display: flex;
+    gap: 60px;
+    margin-bottom: 80px;
+    align-items: center;
+}
+
+.hero-block-left {
+    flex: 1;
+}
+
+.hero-block-title {
+    font-size: 64px;
+    font-weight: 900;
+    line-height: 1.1;
+    color: rgba(35, 30, 32, 1);
+    margin-bottom: 30px;
+    text-transform: uppercase;
+}
+
+.hero-block-text {
+    font-size: 18px;
+    line-height: 1.6;
+    color: rgba(35, 30, 32, 1);
+    margin-bottom: 30px;
+}
+
+.hero-checklist {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.hero-checklist li {
+    display: flex;
+    gap: 15px;
+    font-size: 18px;
+    font-weight: 600;
+    color: rgba(35, 30, 32, 1);
+    margin-bottom: 15px;
+    align-items: flex-start;
+}
+
+.check-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 24px;
+    height: 24px;
+    background: #000;
+    color: #fff;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: -2px;
+}
+
+.hero-block-right {
+    flex: 1;
+}
+
+.hero-image-wrapper {
+    position: relative;
+    border-radius: 30px;
+    overflow: hidden;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
+}
+
+.hero-image {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.request-demo-overlay {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: #1a1a1a;
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 9999px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    backdrop-filter: blur(10px);
+}
+
+/* STATS GRID */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 80px;
+}
+
+.stat-item {
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    padding: 40px;
+    border-radius: 24px;
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-number {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 48px;
+    font-weight: 700;
+    color: rgba(18, 14, 12, 1);
+    line-height: 1;
+    margin-bottom: 15px;
+}
+
+.stat-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: rgba(18, 14, 12, 1);
+}
+
+/* DASHBOARD IMAGE */
+.dashboard-mockup-simple {
+    width: 100%;
+    border-radius: 40px;
+    overflow: hidden;
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.05);
+    margin-bottom: 120px;
+    line-height: 0;
+}
+
+.stats-full-image {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* NEW FUNCTIONALITY */
+.functionality-header {
+    margin-bottom: 60px;
+}
+
+.func-title {
+    font-size: 64px;
+    font-weight: 900;
+    color: rgba(18, 14, 12, 1);
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.func-subtitle {
+    font-size: 16px;
+    font-weight: 600;
+    color: rgba(18, 14, 12, 1);
+    max-width: 800px;
+}
+
+.func-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.func-card {
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    padding: 40px;
+    border-radius: 24px;
+}
+
+.func-card-title {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 48px;
+    font-weight: 700;
+    color: rgba(18, 14, 12, 1);
+    margin-bottom: 10px;
+}
+
+.func-card-text {
+    font-size: 18px;
+    color: rgba(18, 14, 12, 1);
+}
+
+.software-screenshots-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.screenshot-card {
+    background: #fff;
+    border-radius: 24px;
+    padding: 30px;
+    overflow: hidden;
+}
+
+.screenshot-card img {
+    width: 100%;
+    height: auto;
+    display: block;
 }
 
 .logo-link {
@@ -702,10 +936,174 @@ body.scrolled .menu-toggle::after {
     height: 32px;
     background: rgba(18, 14, 12, 1);
     border-radius: 50%;
-    color: #fff;
+    color: rgba(255, 255, 255, 1);
     transition: transform 0.3s ease;
 }
 
 .demo-cta-btn:hover .demo-arrow {
     transform: translate(3px, -3px);
+}
+
+/* FOR MEDIUM AND LARGE BUSINESSES SECTION */
+.business-section {
+    position: relative;
+    background-color: rgba(35, 30, 32, 1);
+    padding: 80px 60px;
+    z-index: 2;
+}
+
+.business-title {
+    font-size: 48px;
+    font-weight: 900;
+    color: rgba(255, 255, 255, 1);
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    margin: 0 0 60px 0;
+}
+
+.business-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.business-card {
+    position: relative;
+    background: rgba(40, 36, 38, 0.85);
+    border: 1px solid rgba(80, 75, 77, 0.4);
+    border-radius: 16px;
+    padding: 24px;
+    box-sizing: border-box;
+    min-height: 180px;
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.business-card:hover {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    border-color: rgba(100, 95, 97, 0.5);
+}
+
+.business-card-main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.business-description {
+    font-size: 18px;
+    line-height: 1.6;
+    color: rgba(161, 161, 161, 1);
+    margin: 0;
+    padding: 0 10px;
+}
+
+.business-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 16px;
+    flex-shrink: 0;
+}
+
+.business-icon.cloud-icon {
+    background: rgba(250, 180, 130, 0.15);
+}
+
+.business-icon.star-icon {
+    background: rgba(252, 241, 132, 0.15);
+}
+
+.business-icon.diamond-icon {
+    background: rgba(252, 241, 132, 0.15);
+}
+
+.business-icon.circle-icon {
+    background: rgba(252, 241, 132, 0.15);
+}
+
+.business-icon.heart-icon {
+    background: rgba(250, 180, 130, 0.15);
+}
+
+.business-icon svg {
+    width: 20px;
+    height: 20px;
+}
+
+.business-card-title {
+    font-size: 22px;
+    font-weight: 600;
+    color: #fff;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    line-height: 1.4;
+    flex-grow: 1;
+}
+
+.business-toggle-btn {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+    color: #fff;
+    padding: 0;
+}
+
+.business-toggle-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
+}
+
+.business-toggle-btn svg {
+    transition: transform 0.3s ease;
+}
+
+.business-card.expanded .business-toggle-btn svg {
+    transform: rotate(180deg);
+}
+
+.business-card-content {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.4s ease, opacity 0.3s ease, margin 0.3s ease;
+    margin-top: 0;
+    padding-bottom: 25px;
+}
+
+.business-card.expanded .business-card-content {
+    max-height: 200px;
+    opacity: 1;
+    margin-top: 16px;
+}
+
+.business-card-content p {
+
+    font-size: 18px;
+    line-height: 1.6;
+    color: rgba(156, 163, 175, 0.9);
+    margin: 0;
+}
+
+.business-card.expanded {
+    min-height: auto;
 }

@@ -159,4 +159,17 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    // --- BUSINESS CARDS TOGGLE ---
+    const businessCards = document.querySelectorAll('.business-card:not(.business-card-main)');
+
+    businessCards.forEach(card => {
+        const btn = card.querySelector('.business-toggle-btn');
+        if (btn) {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                card.classList.toggle('expanded');
+            });
+        }
+    });
 });

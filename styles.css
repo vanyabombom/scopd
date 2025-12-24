@@ -162,23 +162,32 @@
 
 .request-demo-overlay {
     position: absolute;
-    top: 3px;
-    left: 20px;
+    top: 5px;
+    left: 5px;
     background: #fff;
-    color: #1a1a1a;
-    padding: 12px 16px;
+    color: #120e0c;
+    padding: 8px 8px 8px 36px;
     border-radius: 9999px;
     text-decoration: none;
-    font-size: 14px;
-    font-weight: 500;
+    font-size: 16px;
+    font-weight: 600;
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 20px;
     transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
-.request-demo-overlay:hover {
-    background: #f5f5f5;
+.demo-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background: #120e0c;
+    border-radius: 50%;
+    color: #fff;
+    transition: transform 0.3s ease;
 }
 
 .request-demo-overlay:hover .demo-arrow {
@@ -248,10 +257,11 @@
 }
 
 .func-subtitle {
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 600;
     color: rgba(18, 14, 12, 1);
     max-width: 800px;
+    font-weight: bold;
 }
 
 .func-cards-grid {
@@ -1364,4 +1374,329 @@ body.scrolled .menu-toggle::after {
     background: rgba(250, 180, 130, 1);
     color: rgba(35, 30, 32, 1);
     font-weight: 700;
+}
+
+/* CONTACT SECTION */
+.contact-section {
+    background-color: #fff;
+    padding: 100px 0;
+    color: rgba(35, 30, 32, 1);
+}
+
+.contact-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.contact-title {
+    font-size: 64px;
+    font-weight: 900;
+    line-height: 1.1;
+    text-transform: uppercase;
+    margin-bottom: 80px;
+}
+
+.contact-content-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.info-group label {
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: rgba(35, 30, 32, 0.4);
+    display: block;
+    margin-bottom: 15px;
+}
+
+.info-group p,
+.info-group a {
+    font-size: 18px;
+    line-height: 1.5;
+    color: rgba(35, 30, 32, 1);
+    text-decoration: none;
+}
+
+.info-group a.wa-link {
+    text-decoration: underline;
+}
+
+/* Form Styles */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    position: relative;
+}
+
+.form-group label {
+    font-size: 12px;
+    color: rgba(18, 14, 12, 1);
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 15px 20px;
+    border: 1px solid rgba(18, 14, 12, 1);
+    border-radius: 12px;
+    font-size: 16px;
+    font-family: inherit;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: rgba(0, 0, 0, 0.3);
+}
+
+.form-group textarea {
+    resize: none;
+}
+
+.char-count {
+    position: absolute;
+    bottom: -20px;
+    right: 0;
+    font-size: 10px;
+    color: rgba(0, 0, 0, 0.3);
+}
+
+.form-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+}
+
+.form-checkbox label {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.submit-btn {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    background: #120e0c;
+    color: #fff;
+    padding: 6px 6px 6px 36px;
+    border-radius: 9999px;
+    border: none;
+    cursor: pointer;
+    font-size: 22px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    width: fit-content;
+    margin-top: 10px;
+}
+
+.submit-btn:hover {
+    background: #000;
+}
+
+.submit-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 54px;
+    height: 54px;
+    background: #fff;
+    border-radius: 50%;
+    color: #120e0c;
+    transition: transform 0.3s ease;
+}
+
+.submit-btn:hover .submit-arrow {
+    transform: translate(3px, -3px);
+}
+
+.submit-arrow svg {
+    width: 22px;
+    height: 22px;
+}
+
+.footer-wrapper {
+    background-color: #fff;
+    width: 100%;
+}
+
+/* MAIN FOOTER */
+.main-footer {
+    background-color: #0c0a09;
+    color: #fff;
+    padding: 100px 0 40px;
+    border-top-left-radius: 80px;
+    border-top-right-radius: 80px;
+}
+
+.footer-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+.footer-nav-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr) 1.5fr;
+    gap: 40px;
+    margin-bottom: 80px;
+}
+
+.footer-column h4 {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 25px;
+    color: #fff;
+}
+
+.footer-column a {
+    display: block;
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    font-size: 14px;
+    margin-bottom: 15px;
+    transition: color 0.3s ease;
+}
+
+.footer-column a:hover {
+    color: #fff;
+}
+
+.footer-newsletter h4 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.newsletter-input-wrapper {
+    display: flex;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 9999px;
+    padding: 5px;
+    width: 100%;
+}
+
+.newsletter-input-wrapper input {
+    background: transparent;
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    flex-grow: 1;
+    font-size: 14px;
+}
+
+.newsletter-input-wrapper input:focus {
+    outline: none;
+}
+
+.newsletter-btn {
+    font-family: inherit;
+    background: #fff;
+    color: #000;
+    border: none;
+    border-radius: 9999px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.newsletter-btn:hover {
+    opacity: 0.9;
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    text-align: center;
+}
+
+.footer-logo {
+    margin-bottom: 20px;
+}
+
+.footer-logo-img {
+    height: 30px;
+}
+
+.tagline {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 10px;
+}
+
+.copyright {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.4);
+    margin-bottom: 30px;
+}
+
+.footer-legal-links {
+    display: flex;
+    gap: 30px;
+}
+
+.footer-legal-links a {
+    color: rgba(255, 255, 255, 0.4);
+    text-decoration: none;
+    font-size: 12px;
+    transition: color 0.3s ease;
+}
+
+.footer-legal-links a:hover {
+    color: #fff;
+}
+
+.back-to-top {
+    position: absolute;
+    right: 0;
+    top: 60px;
+    width: 44px;
+    height: 44px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.back-to-top:hover {
+    background: #fff;
+    color: #000;
+    transform: translateY(-5px);
+}
+
+.back-to-top svg {
+    transform: rotate(-135deg);
+    /* Arrow up */
 }

@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- 1. LOGIC FOR MENU ---
     const mainItems = document.querySelectorAll('.main-nav .nav-item');
     const subMenus = document.querySelectorAll('.sub-nav');
     const subMenuContainer = document.querySelector('.submenu-container');
@@ -86,13 +85,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const flash = card.querySelector('.flash-layer');
         let isOpen = false;
 
-        // Функция вспышки
+
         function triggerFlash() {
-            // Colors from .gradient-section in styles.css
+
             const gradientColors = [
-                'rgba(252, 241, 132, 1)', // Yellow
-                'rgba(250, 180, 130, 1)', // Peach
-                'rgba(255, 160, 100, 1)'  // Orange
+                'rgba(252, 241, 132, 1)',
+                'rgba(250, 180, 130, 1)',
+                'rgba(255, 160, 100, 1)'
             ];
             const warmColor = gradientColors[Math.floor(Math.random() * gradientColors.length)];
 
@@ -126,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- SIDE MENU LOGIC ---
+
     const menuToggle = document.querySelector('.menu-toggle');
     const sideMenuOverlay = document.querySelector('.side-menu-overlay');
     const closeMenuBtn = document.querySelector('.close-menu-btn');
@@ -135,24 +134,24 @@ document.addEventListener('DOMContentLoaded', () => {
         menuToggle.addEventListener('click', (e) => {
             e.preventDefault();
             sideMenuOverlay.classList.add('active');
-            document.body.style.overflow = 'hidden'; // Lock scroll
+            document.body.style.overflow = 'hidden';
         });
 
         const closeMenu = () => {
             sideMenuOverlay.classList.remove('active');
-            document.body.style.overflow = ''; // Unlock scroll
+            document.body.style.overflow = '';
         };
 
         closeMenuBtn.addEventListener('click', closeMenu);
 
-        // Close on backdrop click (optional)
+
         sideMenuOverlay.addEventListener('click', (e) => {
             if (e.target === sideMenuOverlay) {
                 closeMenu();
             }
         });
 
-        // Close on Esc key
+
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && sideMenuOverlay.classList.contains('active')) {
                 closeMenu();
@@ -160,7 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- BUSINESS CARDS TOGGLE ---
+
     const businessCards = document.querySelectorAll('.business-card:not(.business-card-main)');
 
     businessCards.forEach(card => {

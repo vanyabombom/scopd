@@ -449,12 +449,70 @@ body.scrolled .menu-toggle::after {
     -webkit-backdrop-filter: blur(12px);
 }
 
+/* === VISUAL ONLY: make .glass-effect look like the найденный "glass" === */
 .glass-effect {
+    /* чтобы ::before работал корректно */
+    /* если у тебя карточка не круглая — поставь свой радиус */
+
+    /* мягкая "стеклянная" заливка как в примере */
+    background: rgba(255, 255, 255, 0.08);
+
+    /* двойная обводка: внутренняя + внешняя */
+    border: 2px solid transparent;
+    box-shadow:
+        0 0 0 2px rgba(163, 163, 163, 0.6),
+        /* внешнее белое кольцо */
+        0 16px 32px rgba(0, 0, 0, 0.12);
+    /* мягкая тень */
+
+    /* размытие/сатурация как у "стекла" */
+    backdrop-filter: blur(40px) saturate(200%);
+    -webkit-backdrop-filter: blur(40px) saturate(200%);
+}
+
+/* твой градиентный бордер-маск оставим, но подстроим под стиль */
+.glass-effect::before {
+    content: "";
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    border-radius: inherit;
+
+    /* тонкий "премиум" градиент по обводке */
+    border: 1px solid transparent;
+    background: linear-gradient(135deg,
+            rgba(255, 255, 255, 0.55),
+            rgba(255, 255, 255, 0.12)) border-box;
+
+    /* вырезаем середину, оставляя только рамку */
+    -webkit-mask:
+        linear-gradient(#000 0 0) padding-box,
+        linear-gradient(#000 0 0) border-box;
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+}
+
+/* если у тебя был второй псевдо-слой — можно чуть подсветить */
+.glass-effect::after {
+    content: "";
+
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    border-radius: inherit;
+
+    /* лёгкая внутренняя подсветка (как "стеклянный объем") */
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.20);
+}
+
+
+/* <---- ТЕСТОВЫЙ ВАРИАНТ ----> */
+/* .glass-effect {
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.1));
     backdrop-filter: blur(40px) saturate(200%);
     -webkit-backdrop-filter: blur(40px) saturate(200%);
     border: 1px solid rgba(255, 255, 255, 0.4);
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05), inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05), inset 0 0 0 1px rgba(255, 255, 255, 0.2);  
 }
 
 .glass-effect::before {
@@ -464,10 +522,10 @@ body.scrolled .menu-toggle::after {
     border-radius: inherit;
     border: var(border-width) solid transparent;
     background: linear-gradient(var(border-1), var(border-2)) border-box;
-    mask: linear-gradient(black, black) border-box,
-        linear-gradient(black, black) padding-box;
+    mask: linear-gradient(black, black) border-box, linear-gradient(black, black) padding-box;
     mask-composite: subtract;
-}
+} */
+
 
 .pill-nav {
     border-radius: 9999px;

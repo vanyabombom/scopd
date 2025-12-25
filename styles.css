@@ -86,7 +86,7 @@
     margin: 0 auto;
 }
 
-/* HERO BLOCK */
+
 .hero-block {
     display: flex;
     gap: 60px;
@@ -195,7 +195,6 @@
     transform: translate(3px, -3px);
 }
 
-/* STATS GRID */
 .stats-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -228,7 +227,6 @@
     color: rgba(18, 14, 12, 1);
 }
 
-/* DASHBOARD IMAGE */
 .dashboard-mockup-simple {
     width: 100%;
     border-radius: 40px;
@@ -244,7 +242,6 @@
     display: block;
 }
 
-/* NEW FUNCTIONALITY */
 .functionality-header {
     margin-bottom: 60px;
 }
@@ -449,28 +446,18 @@ body.scrolled .menu-toggle::after {
     -webkit-backdrop-filter: blur(12px);
 }
 
-/* === VISUAL ONLY: make .glass-effect look like the найденный "glass" === */
-.glass-effect {
-    /* чтобы ::before работал корректно */
-    /* если у тебя карточка не круглая — поставь свой радиус */
 
-    /* мягкая "стеклянная" заливка как в примере */
+.glass-effect {
     background: rgba(255, 255, 255, 0.08);
 
-    /* двойная обводка: внутренняя + внешняя */
     border: 2px solid transparent;
     box-shadow:
         0 0 0 2px rgba(163, 163, 163, 0.6),
-        /* внешнее белое кольцо */
         0 16px 32px rgba(0, 0, 0, 0.12);
-    /* мягкая тень */
-
-    /* размытие/сатурация как у "стекла" */
     backdrop-filter: blur(40px) saturate(200%);
     -webkit-backdrop-filter: blur(40px) saturate(200%);
 }
 
-/* твой градиентный бордер-маск оставим, но подстроим под стиль */
 .glass-effect::before {
     content: "";
     inset: 0;
@@ -478,13 +465,10 @@ body.scrolled .menu-toggle::after {
     pointer-events: none;
     border-radius: inherit;
 
-    /* тонкий "премиум" градиент по обводке */
     border: 1px solid transparent;
     background: linear-gradient(135deg,
             rgba(255, 255, 255, 0.55),
             rgba(255, 255, 255, 0.12)) border-box;
-
-    /* вырезаем середину, оставляя только рамку */
     -webkit-mask:
         linear-gradient(#000 0 0) padding-box,
         linear-gradient(#000 0 0) border-box;
@@ -492,7 +476,6 @@ body.scrolled .menu-toggle::after {
     mask-composite: exclude;
 }
 
-/* если у тебя был второй псевдо-слой — можно чуть подсветить */
 .glass-effect::after {
     content: "";
 
@@ -501,7 +484,6 @@ body.scrolled .menu-toggle::after {
     pointer-events: none;
     border-radius: inherit;
 
-    /* лёгкая внутренняя подсветка (как "стеклянный объем") */
     box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.20);
 }
 
@@ -1047,7 +1029,6 @@ body.scrolled .menu-toggle::after {
     transform: translate(3px, -3px);
 }
 
-/* FOR MEDIUM AND LARGE BUSINESSES SECTION */
 .business-section {
     position: relative;
     background-color: rgba(35, 30, 32, 1);
@@ -1224,7 +1205,6 @@ body.scrolled .menu-toggle::after {
     min-height: auto;
 }
 
-/* MISSION SECTION */
 .mission-section {
     min-height: 100vh;
     width: 100%;
@@ -1321,7 +1301,6 @@ body.scrolled .menu-toggle::after {
     transform: translate(3px, -3px);
 }
 
-/* REPORTS SECTION */
 .reports-section {
     background-color: #1a1a1a;
     padding: 100px 0;
@@ -1475,7 +1454,6 @@ body.scrolled .menu-toggle::after {
     font-weight: 700;
 }
 
-/* CONTACT SECTION */
 .contact-section {
     background-color: #fff;
     padding: 100px 0;
@@ -1529,7 +1507,6 @@ body.scrolled .menu-toggle::after {
     text-decoration: underline;
 }
 
-/* Form Styles */
 .contact-form {
     display: flex;
     flex-direction: column;
@@ -1593,7 +1570,7 @@ body.scrolled .menu-toggle::after {
     display: flex;
     align-items: center;
     gap: 24px;
-    background: #120e0c;
+    background: rgba(35, 30, 32, 1);
     color: #fff;
     padding: 6px 6px 6px 36px;
     border-radius: 9999px;
@@ -1636,9 +1613,8 @@ body.scrolled .menu-toggle::after {
     width: 100%;
 }
 
-/* MAIN FOOTER */
 .main-footer {
-    background-color: #0c0a09;
+    background-color: rgba(35, 30, 32, 1);
     color: #fff;
     padding: 100px 0 40px;
     border-top-left-radius: 80px;
@@ -1797,5 +1773,4 @@ body.scrolled .menu-toggle::after {
 
 .back-to-top svg {
     transform: rotate(-135deg);
-    /* Arrow up */
 }

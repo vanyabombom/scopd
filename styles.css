@@ -449,7 +449,6 @@ body.scrolled .menu-toggle::after {
 
 .glass-effect {
     background: rgba(255, 255, 255, 0.08);
-
     border: 2px solid transparent;
     box-shadow:
         0 0 0 2px rgba(163, 163, 163, 0.6),
@@ -464,8 +463,6 @@ body.scrolled .menu-toggle::after {
     z-index: 0;
     pointer-events: none;
     border-radius: inherit;
-
-    border: 1px solid transparent;
     background: linear-gradient(135deg,
             rgba(255, 255, 255, 0.55),
             rgba(255, 255, 255, 0.12)) border-box;
@@ -477,13 +474,10 @@ body.scrolled .menu-toggle::after {
 }
 
 .glass-effect::after {
-    content: "";
-
     inset: 0;
     z-index: 0;
     pointer-events: none;
     border-radius: inherit;
-
     box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.20);
 }
 

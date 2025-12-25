@@ -171,4 +171,9 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
     });
+
+    // Initialize AOS animations (if AOS loaded)
+    if (typeof AOS !== 'undefined') {
+        AOS.init({ duration: 800, once: true });
+    }
 });

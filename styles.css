@@ -1,27 +1,3 @@
-html, body {
-    width: 100%;
-    max-width: 100%;
-    overflow-x: hidden;
-}
-html.lenis, html.lenis body {
-  height: auto;
-}
-
-.lenis.lenis-smooth {
-  scroll-behavior: auto !important; 
-}
-
-.lenis.lenis-smooth [data-lenis-prevent] {
-  overscroll-behavior: contain;
-}
-
-.lenis.lenis-stopped {
-  overflow: hidden;
-}
-
-.lenis.lenis-scrolling iframe {
-  pointer-events: none; 
-}
 @font-face {
     font-family: 'Volte';
     src: url('fonts/Volte-Medium.woff2') format('woff2'),
@@ -57,18 +33,59 @@ html.lenis, html.lenis body {
     font-weight: 900;
     font-style: normal;
 }
+html {
+    /* Разрешаем скролл, но убираем горизонтальный */
+    overflow-y: auto;
+    overflow-x: hidden;
+    /* ВАЖНО: сбрасываем высоту, чтобы не было второго скролла */
+    height: auto;
+    min-height: 100%;
+}
 
+body {
+    width: 100%;
+    /* У body не должно быть своего скролла */
+    overflow-y: visible; 
+    overflow-x: hidden;
+    /* Высота должна тянуться за контентом */
+    height: auto; 
+    margin: 0;
+    padding: 0;
+}
 
+/* Настройки для Lenis (чтобы не ломался) */
+html.lenis, html.lenis body {
+    height: auto;
+}
+
+.lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+    overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+    pointer-events: none;
+}
+
+/* Исправленный layout-wrapper */
 .layout-wrapper {
     font-family: 'Volte', 'Inter', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: transparent; 
-    min-height: 100vh;
+    background-color: transparent;
     color: #333;
-    overflow-x: hidden;
     position: relative;
-    width: 100%; 
+    width: 100%;
+    /* ВАЖНО: Убираем отсюда overflow и height, 
+       чтобы этот блок не становился скролл-контейнером */
+    overflow: visible; 
 }
 
 .bg-video {
@@ -801,6 +818,7 @@ body.scrolled .menu-toggle::after {
     justify-content: flex-end;
     opacity: 0;
     transition: opacity .3s ease;
+    overflow-x: hidden;
 }
 
 .side-menu-overlay.active {
@@ -847,6 +865,7 @@ body.scrolled .menu-toggle::after {
         0 0 360px rgba(246, 194, 161, 0.08);
     overflow-y: auto;
     color: rgba(177, 177, 177, 1);
+     overflow-x: hidden;
 }
 
 .side-menu-overlay.active .side-menu-content {

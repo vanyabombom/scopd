@@ -1,14 +1,34 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const lenis = new Lenis({
+        duration: 1.2,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        direction: 'vertical',
+        gestureDirection: 'vertical',
+        smooth: true,
+        mouseMultiplier: 1,
+        smoothTouch: false,
+        touchMultiplier: 2,
+    });
 
-    
+    function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+
+    lenis.on('scroll', () => {
+        if (typeof AOS !== 'undefined') {
+            AOS.refresh();
+        }
+    });
+
     const initializeMobileUI = () => {
         if (window.innerWidth <= 768) {
             const logoPill = document.querySelector('.logo-pill');
             const logoBig = document.querySelector('.logo-big');
             const logoSmall = document.querySelector('.logo-small');
-            
+
             if (logoPill && logoBig && logoSmall) {
-                
                 logoBig.style.opacity = '0';
                 logoSmall.style.opacity = '1';
             }
@@ -22,16 +42,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const subMenus = document.querySelectorAll('.sub-nav');
     const subMenuContainer = document.querySelector('.submenu-container');
     let hideTimeout;
-    AOS.init({
-        once: true,
-        disable: false,
-        mirror: false,
-        offset: 120,
-    });
+
+    if (typeof AOS !== 'undefined') {
+        AOS.init({
+            once: true,
+            disable: false,
+            mirror: false,
+            offset: 120,
+        });
+    }
+
     const hideAllMenus = () => {
         subMenus.forEach(menu => menu.classList.remove('active-sub'));
         mainItems.forEach(item => item.classList.remove('active'));
     };
+
+    hideAllMenus(); 
 
     const moveSubmenuTo = (item) => {
         if (!subMenuContainer) return;
@@ -87,7 +113,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    
     window.addEventListener('scroll', () => {
         const scrollY = window.scrollY;
         const threshold = 50;
@@ -98,7 +123,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-
     const cards = document.querySelectorAll('.glass-card');
 
     cards.forEach(card => {
@@ -108,16 +132,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const flash = card.querySelector('.flash-layer');
         let isOpen = false;
 
-
         function triggerFlash() {
-
             const gradientColors = [
                 'rgba(252, 241, 132, 1)',
                 'rgba(250, 180, 130, 1)',
                 'rgba(255, 160, 100, 1)'
             ];
             const warmColor = gradientColors[Math.floor(Math.random() * gradientColors.length)];
-
             const randomX = Math.floor(Math.random() * 100);
             const randomY = Math.floor(Math.random() * 100);
 
@@ -148,7 +169,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-
     const menuToggle = document.querySelector('.menu-toggle');
     const sideMenuOverlay = document.querySelector('.side-menu-overlay');
     const closeMenuBtn = document.querySelector('.close-menu-btn');
@@ -167,13 +187,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         closeMenuBtn.addEventListener('click', closeMenu);
 
-
         sideMenuOverlay.addEventListener('click', (e) => {
             if (e.target === sideMenuOverlay) {
                 closeMenu();
             }
         });
-
 
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && sideMenuOverlay.classList.contains('active')) {
@@ -181,7 +199,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-
 
     const businessCards = document.querySelectorAll('.business-card:not(.business-card-main)');
 
@@ -195,20 +212,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    
-    if (typeof AOS !== 'undefined') {
-        AOS.init({ duration: 800, once: true });
-    }
-
-    
     const initSlider = (gridSelector) => {
         const grids = document.querySelectorAll(gridSelector);
         grids.forEach(grid => {
-            if (window.innerWidth <= 425 && grid.classList.contains('software-screenshots-grid') || 
+            if (window.innerWidth <= 425 && (
+                grid.classList.contains('software-screenshots-grid') || 
                 grid.classList.contains('solutions-grid') || 
                 grid.classList.contains('business-grid') ||
-                grid.classList.contains('reports-grid')) {
-                
+                grid.classList.contains('reports-grid'))) {
                 
                 const items = grid.querySelectorAll('[class*="card"]');
                 let touchStartX = 0;
@@ -222,11 +233,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     touchEndX = e.changedTouches[0].screenX;
                 }, false);
 
-                
                 grid.addEventListener('scroll', () => {
-                    const scrollLeft = grid.scrollLeft;
-                    const itemWidth = grid.querySelector('[class*="card"]').offsetWidth + 12;
-                    const index = Math.round(scrollLeft / itemWidth);
                 }, { passive: true });
             }
         });
@@ -242,33 +249,5 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     setupMobileSliders();
-
     window.addEventListener('resize', setupMobileSliders);
 });
-document.addEventListener('DOMContentLoaded', () => {
-
-    
-    const lenis = new Lenis({
-        duration: 1.2,       
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), 
-        direction: 'vertical', 
-        gestureDirection: 'vertical',
-        smooth: true,
-        mouseMultiplier: 1,
-        smoothTouch: false,  
-        touchMultiplier: 2,
-    });
-
-    function raf(time) {
-        lenis.raf(time);
-        requestAnimationFrame(raf);
-    }
-    requestAnimationFrame(raf);
-
-    lenis.on('scroll', () => {
-        ; 
-    });
-
-    
-});
-

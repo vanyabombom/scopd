@@ -8,7 +8,7 @@ html.lenis, html.lenis body {
 }
 
 .lenis.lenis-smooth {
-  scroll-behavior: auto !important; /* Отключаем нативный плавный скролл, если он есть */
+  scroll-behavior: auto !important; 
 }
 
 .lenis.lenis-smooth [data-lenis-prevent] {
@@ -20,7 +20,7 @@ html.lenis, html.lenis body {
 }
 
 .lenis.lenis-scrolling iframe {
-  pointer-events: none; /* Улучшает производительность при скролле над iframe */
+  pointer-events: none; 
 }
 @font-face {
     font-family: 'Volte';
@@ -63,12 +63,12 @@ html.lenis, html.lenis body {
     font-family: 'Volte', 'Inter', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: transparent; /* ИЗМЕНЕНО: было #ffffff */
+    background-color: transparent; 
     min-height: 100vh;
     color: #333;
-    overflow-x: hidden; /* Обязательно оставляем */
+    overflow-x: hidden;
     position: relative;
-    width: 100%; /* Добавляем для стабильности */
+    width: 100%; 
 }
 
 .bg-video {
@@ -77,8 +77,8 @@ html.lenis, html.lenis body {
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;       /* Заполняет экран, обрезая лишнее, сохраняя пропорции */
-    object-position: center; /* Центрирует видео, чтобы обрезка шла равномерно с краев */
+    object-fit: cover;       
+    object-position: center;
     z-index: -1;
 }
 
@@ -1755,7 +1755,6 @@ body.scrolled .menu-toggle::after {
     transform: rotate(-135deg);
 }
 
-/* ========== TABLET LANDSCAPE (1024px) ========== */
 @media (max-width: 1024px) {
     .gradient-container {
         padding: 0 20px;
@@ -1824,9 +1823,7 @@ body.scrolled .menu-toggle::after {
     }
 }
 
-/* ========== TABLET PORTRAIT (768px) ========== */
 @media (max-width: 768px) {
-    /* На планшетах логотип сразу в компактном состоянии */
     .logo-pill {
         padding: 0 !important;
         width: 50px;
@@ -2086,27 +2083,27 @@ body.scrolled .menu-toggle::after {
     .footer-nav-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 40px;
-        text-align: center; /* Центрируем контент внутри сетки */
+        text-align: center; 
     }
     .footer-column {
         display: flex;
         flex-direction: column;
-        align-items: center; /* Центрируем элементы внутри колонок */
+        align-items: center; 
     }
     .footer-column h4 {
         font-size: 16px;
         margin-bottom: 15px;
-        width: 100%; /* Гарантируем ширину для центрирования */
+        width: 100%; 
     }
 
     .footer-column a {
         font-size: 14px;
-        width: 100%; /* Гарантируем ширину для ссылок */
+        width: 100%; 
     }
 
     .newsletter-input-wrapper {
-        margin: 10px auto 0; /* Центрируем поле ввода email */
-        max-width: 400px; /* Ограничиваем ширину, чтобы не растягивалось слишком сильно */
+        margin: 10px auto 0; 
+        max-width: 400px; 
     }
 
     .nav-wrapper {
@@ -2149,7 +2146,6 @@ body.scrolled .menu-toggle::after {
     }
 }
 
-/* ========== MOBILE (425px) ========== */
 @media (max-width: 425px) {
     .gradient-section {
         padding: 40px 0;
@@ -2265,7 +2261,6 @@ body.scrolled .menu-toggle::after {
         font-size: 14px;
     }
 
-    /* Слайдер для скриншотов */
     .software-screenshots-grid {
         display: flex;
         overflow-x: auto;
@@ -2306,7 +2301,6 @@ body.scrolled .menu-toggle::after {
         white-space: normal;
     }
 
-    /* Слайдер для карточек решений */
     .solutions-grid {
         display: flex;
         overflow-x: auto;
@@ -2408,7 +2402,6 @@ body.scrolled .menu-toggle::after {
         margin-bottom: 30px;
     }
 
-    /* Слайдер для бизнес карточек */
     .business-grid {
         display: flex;
         overflow-x: auto;
@@ -2453,8 +2446,8 @@ body.scrolled .menu-toggle::after {
     mission-section { padding: 40px 0; }
     
     .mission-container {
-        align-items: center; /* Центрируем блоки (картинку) */
-        text-align: center;  /* Центрируем текст */
+        align-items: center; 
+        text-align: center;  
     }
 
     .mission-title {
@@ -2468,10 +2461,8 @@ body.scrolled .menu-toggle::after {
     }
 
     .mission-image-wrapper-rel {
-        /* Центрируем блок с картинкой */
         margin-left: auto;
         margin-right: auto;
-        /* Небольшой отступ справа, чтобы кнопка (которая right: -15px) визуально влезала */
         max-width: 90%; 
     }
 
@@ -2494,7 +2485,6 @@ body.scrolled .menu-toggle::after {
         margin-bottom: 30px;
     }
 
-    /* Слайдер для отчетов */
     .reports-grid {
         display: flex;
         overflow-x: auto;
@@ -2591,17 +2581,17 @@ body.scrolled .menu-toggle::after {
     .footer-nav-grid {
         grid-template-columns: 1fr;
         gap: 30px;
-        text-align: center; /* Гарантируем центр на мобильных */
+        text-align: center;
     }
     
     .footer-column {
-        align-items: center; /* Выравнивание колонок по центру */
+        align-items: center; 
     }
     
     .newsletter-input-wrapper {
         margin-top: 15px;
-        margin-left: auto;  /* Центрируем */
-        margin-right: auto; /* Центрируем */
+        margin-left: auto; 
+        margin-right: auto; 
     }
 
     .footer-column h4 {
@@ -2649,7 +2639,6 @@ body.scrolled .menu-toggle::after {
         font-size: 12px;
     }
 
-    /* Адаптив для меню и логотипа на мобиле */
     .logo-link {
         top: 12px;
         left: 12px;
@@ -2687,7 +2676,6 @@ body.scrolled .menu-toggle::after {
     }
 }
 
-/* ========== SLIDER SMOOTH SCROLLING ========== */
 @supports (scroll-behavior: smooth) {
     .software-screenshots-grid,
     .solutions-grid,

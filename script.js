@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // Initialize mobile logo state on load
+    
     const initializeMobileUI = () => {
         if (window.innerWidth <= 768) {
             const logoPill = document.querySelector('.logo-pill');
@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const logoSmall = document.querySelector('.logo-small');
             
             if (logoPill && logoBig && logoSmall) {
-                // Set logo to compact state on mobile
+                
                 logoBig.style.opacity = '0';
                 logoSmall.style.opacity = '1';
             }
@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Scroll effect for body class
+    
     window.addEventListener('scroll', () => {
         const scrollY = window.scrollY;
         const threshold = 50;
@@ -195,12 +195,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Initialize AOS animations (if AOS loaded)
+    
     if (typeof AOS !== 'undefined') {
         AOS.init({ duration: 800, once: true });
     }
 
-    // Mobile sliders setup
+    
     const initSlider = (gridSelector) => {
         const grids = document.querySelectorAll(gridSelector);
         grids.forEach(grid => {
@@ -209,7 +209,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 grid.classList.contains('business-grid') ||
                 grid.classList.contains('reports-grid')) {
                 
-                // Add scroll indicators/dots
+                
                 const items = grid.querySelectorAll('[class*="card"]');
                 let touchStartX = 0;
                 let touchEndX = 0;
@@ -222,7 +222,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     touchEndX = e.changedTouches[0].screenX;
                 }, false);
 
-                // Smooth snap scrolling
+                
                 grid.addEventListener('scroll', () => {
                     const scrollLeft = grid.scrollLeft;
                     const itemWidth = grid.querySelector('[class*="card"]').offsetWidth + 12;
@@ -232,7 +232,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    // Initialize sliders on load and resize
     const setupMobileSliders = () => {
         if (window.innerWidth <= 425) {
             initSlider('.software-screenshots-grid');
@@ -248,39 +247,28 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- 1. Инициализация Lenis ---
+    
     const lenis = new Lenis({
-        duration: 1.2,       // Длительность скролла (чем больше, тем плавнее)
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Функция плавности
+        duration: 1.2,       
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), 
         direction: 'vertical', 
         gestureDirection: 'vertical',
         smooth: true,
         mouseMultiplier: 1,
-        smoothTouch: false,  // На мобильных лучше оставлять нативный скролл
+        smoothTouch: false,  
         touchMultiplier: 2,
     });
 
-    // --- 2. Связка Lenis + GSAP + AOS ---
-    // Обновляем ScrollTrigger (если будете использовать его в GSAP)
-    // lenis.on('scroll', ScrollTrigger.update); 
-
-    // Основной цикл анимации (requestAnimationFrame)
     function raf(time) {
         lenis.raf(time);
         requestAnimationFrame(raf);
     }
     requestAnimationFrame(raf);
 
-    // Интеграция с AOS (чтобы блоки появлялись плавно при скролле Lenis)
-    // AOS полагается на событие scroll, Lenis его вызывает, но иногда нужно принудительно
     lenis.on('scroll', () => {
-        // Если вдруг AOS будет подтупливать, можно раскомментировать:
-        // AOS.refresh(); 
+        ; 
     });
 
-    // ... ВАШ ОСТАЛЬНОЙ КОД (меню, слайдеры и т.д.) ...
     
-    // ... Initialize Mobile UI ...
-    // ...
 });
 

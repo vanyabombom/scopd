@@ -1,3 +1,8 @@
+html, body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+}
 @font-face {
     font-family: 'Volte';
     src: url('fonts/Volte-Medium.woff2') format('woff2'),
@@ -34,15 +39,17 @@
     font-style: normal;
 }
 
+
 .layout-wrapper {
     font-family: 'Volte', 'Inter', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #ffffff;
+    background-color: transparent; /* ИЗМЕНЕНО: было #ffffff */
     min-height: 100vh;
     color: #333;
-    overflow-x: hidden;
+    overflow-x: hidden; /* Обязательно оставляем */
     position: relative;
+    width: 100%; /* Добавляем для стабильности */
 }
 
 .bg-video {
@@ -51,7 +58,8 @@
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: cover;       /* Заполняет экран, обрезая лишнее, сохраняя пропорции */
+    object-position: center; /* Центрирует видео, чтобы обрезка шла равномерно с краев */
     z-index: -1;
 }
 
@@ -162,7 +170,7 @@
     top: 5px;
     left: 5px;
     background: #fff;
-    color: #120e0c;
+    color: rgba(35, 30, 32, 1);
     padding: 8px 8px 8px 36px;
     border-radius: 9999px;
     text-decoration: none;
@@ -181,7 +189,7 @@
     justify-content: center;
     width: 36px;
     height: 36px;
-    background: #120e0c;
+    background: rgba(35, 30, 32, 1);
     border-radius: 50%;
     color: #fff;
     transition: transform 0.3s ease;
@@ -1168,7 +1176,6 @@ body.scrolled .menu-toggle::after {
 
 .mission-section {
     min-height: 100vh;
-    width: 100%;
     position: relative;
     background-color: rgba(250, 180, 130, 1);
     background-image:
@@ -1393,7 +1400,7 @@ body.scrolled .menu-toggle::after {
     grid-column: 2;
     width: 100%;
     text-align: center;
-    background: #120e0c;
+    background: rgba(35, 30, 32, 1);
     color: #fff;
     font-size: 14px;
     font-weight: 500;
@@ -1549,7 +1556,7 @@ body.scrolled .menu-toggle::after {
     height: 54px;
     background: #fff;
     border-radius: 50%;
-    color: #120e0c;
+    color: rgba(35, 30, 32, 1);
     transition: transform 0.3s ease;
 }
 
@@ -1589,7 +1596,7 @@ body.scrolled .menu-toggle::after {
 }
 
 .footer-column h4 {
-    font-size: 14px;
+    font-size: 18px;
     font-weight: 700;
     margin-bottom: 25px;
     color: #fff;
@@ -1599,7 +1606,7 @@ body.scrolled .menu-toggle::after {
     display: block;
     color: rgba(255, 255, 255, 0.6);
     text-decoration: none;
-    font-size: 14px;
+    font-size: 16px;
     margin-bottom: 15px;
     transition: color 0.3s ease;
 }
@@ -1675,13 +1682,13 @@ body.scrolled .menu-toggle::after {
 }
 
 .tagline {
-    font-size: 14px;
+    font-size: 18px;
     color: rgba(255, 255, 255, 0.6);
     margin-bottom: 10px;
 }
 
 .copyright {
-    font-size: 12px;
+    font-size: 16px;
     color: rgba(255, 255, 255, 0.4);
     margin-bottom: 30px;
 }
@@ -1694,7 +1701,7 @@ body.scrolled .menu-toggle::after {
 .footer-legal-links a {
     color: rgba(255, 255, 255, 0.4);
     text-decoration: none;
-    font-size: 12px;
+    font-size: 16px;
     transition: color 0.3s ease;
 }
 
@@ -1727,4 +1734,977 @@ body.scrolled .menu-toggle::after {
 
 .back-to-top svg {
     transform: rotate(-135deg);
+}
+
+/* ========== TABLET LANDSCAPE (1024px) ========== */
+@media (max-width: 1024px) {
+    .gradient-container {
+        padding: 0 20px;
+        max-width: 100%;
+    }
+
+    .solutions-header {
+        padding: 0 20px;
+    }
+
+    .solutions-grid {
+        padding: 0 20px;
+    }
+
+    .hero-block {
+        gap: 30px;
+        flex-direction: column;
+    }
+
+    .hero-block-title {
+        font-size: 40px;
+    }
+
+    .hero-block-text {
+        font-size: 16px;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .func-cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .software-screenshots-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .solutions-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .wide-card {
+        grid-column: span 2;
+    }
+
+    .business-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .footer-nav-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .section-title {
+        font-size: 2.5rem;
+    }
+
+    .func-title {
+        font-size: 48px;
+    }
+
+    .func-card-title {
+        font-size: 28px;
+    }
+}
+
+/* ========== TABLET PORTRAIT (768px) ========== */
+@media (max-width: 768px) {
+    /* На планшетах логотип сразу в компактном состоянии */
+    .logo-pill {
+        padding: 0 !important;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+    }
+
+    .logo-pill img {
+        height: 18px;
+    }
+
+    .logo-big {
+        opacity: 0;
+    }
+
+    .logo-small {
+        opacity: 1;
+    }
+
+    body.scrolled .logo-pill {
+        padding: 0 !important;
+        width: 50px;
+        height: 50px;
+    }
+
+    body.scrolled .menu-toggle {
+        width: 50px;
+        height: 50px;
+    }
+
+    .gradient-section {
+        padding: 60px 0;
+    }
+
+    .hero-block {
+        margin-bottom: 40px;
+    }
+
+    .hero-block-left {
+        padding: 0 15px;
+    }
+
+    .hero-block-title {
+        font-size: 32px;
+        margin-bottom: 20px;
+    }
+
+    .hero-block-text {
+        font-size: 15px;
+        margin-bottom: 20px;
+    }
+
+    .hero-checklist li {
+        font-size: 15px;
+        margin-bottom: 12px;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        margin-bottom: 40px;
+    }
+
+    .stat-item {
+        padding: 30px;
+    }
+
+    .stat-number {
+        font-size: 36px;
+    }
+
+    .stat-label {
+        font-size: 12px;
+    }
+
+    .dashboard-mockup-simple {
+        margin-bottom: 60px;
+    }
+
+    .functionality-header {
+        margin-bottom: 40px;
+    }
+
+    .func-title {
+        font-size: 36px;
+        margin-bottom: 15px;
+    }
+
+    .func-subtitle {
+        font-size: 16px;
+    }
+
+    .func-cards-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        margin-bottom: 30px;
+    }
+
+    .func-card {
+        padding: 30px;
+    }
+
+    .func-card-title {
+        font-size: 24px;
+    }
+
+    .func-card-text {
+        font-size: 16px;
+    }
+
+    .solutions-section {
+        padding: 60px 20px;
+    }
+
+    .solutions-header {
+        margin-bottom: 40px;
+    }
+
+    .section-title {
+        font-size: 2rem;
+        margin-bottom: 10px;
+    }
+
+    .section-subtitle {
+        font-size: 16px;
+    }
+
+    .solutions-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .wide-card {
+        grid-column: span 1;
+    }
+
+    .glass-card {
+        height: auto;
+        padding: 25px;
+        min-height: 100px;
+    }
+
+    .glass-card h3 {
+        font-size: 20px;
+    }
+
+    .card-content {
+        margin-top: 15px;
+    }
+
+    .card-content p {
+        font-size: 16px;
+    }
+
+    .toggle-btn {
+        width: 36px;
+        height: 36px;
+    }
+
+    .demo-cta-section {
+        padding: 60px 20px;
+    }
+
+    .demo-cta-title {
+        font-size: 24px;
+    }
+
+    .demo-cta-content h3 {
+        font-size: 20px;
+    }
+
+    .demo-cta-content p {
+        font-size: 15px;
+    }
+
+    .business-section {
+        padding: 60px 20px;
+    }
+
+    .business-title {
+        font-size: 28px;
+    }
+
+    .business-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .business-card {
+        padding: 25px;
+        min-height: auto;
+    }
+
+    .business-card-main {
+        padding: 30px;
+    }
+
+    .business-card-centered {
+        text-align: center;
+    }
+
+    .business-icon {
+        width: 56px;
+        height: 56px;
+        margin: 0 auto 15px;
+    }
+
+    .business-card-title {
+        font-size: 20px;
+    }
+
+    .mission-section {
+        padding: 60px 20px;
+    }
+
+    .mission-title {
+        font-size: 28px;
+    }
+
+    .mission-container {
+        max-width: 100%;
+    }
+
+    .reports-section {
+        padding: 60px 20px;
+    }
+
+    .reports-main-title {
+        font-size: 28px;
+    }
+
+    .reports-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-section {
+        padding: 60px 20px;
+    }
+
+    .contact-title {
+        font-size: 28px;
+    }
+
+    .contact-content-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-info {
+        margin-bottom: 30px;
+    }
+
+    .main-footer {
+        padding: 60px 20px;
+        text-align: center; 
+    }
+
+    .footer-nav-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px;
+        text-align: center; /* Центрируем контент внутри сетки */
+    }
+    .footer-column {
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Центрируем элементы внутри колонок */
+    }
+    .footer-column h4 {
+        font-size: 16px;
+        margin-bottom: 15px;
+        width: 100%; /* Гарантируем ширину для центрирования */
+    }
+
+    .footer-column a {
+        font-size: 14px;
+        width: 100%; /* Гарантируем ширину для ссылок */
+    }
+
+    .newsletter-input-wrapper {
+        margin: 10px auto 0; /* Центрируем поле ввода email */
+        max-width: 400px; /* Ограничиваем ширину, чтобы не растягивалось слишком сильно */
+    }
+
+    .nav-wrapper {
+        display: none;
+    }
+
+    .menu-toggle {
+        opacity: 1;
+        transform: translateX(0);
+        pointer-events: all;
+    }
+
+    body.scrolled .menu-toggle {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    .logo-link {
+        top: 15px;
+        left: 15px;
+    }
+
+    .logo-pill {
+        width: 50px;
+        height: 50px;
+        padding: 0 !important;
+        border-radius: 50%;
+    }
+
+    .logo-pill img {
+        height: 18px;
+    }
+
+    .logo-big {
+        opacity: 0;
+    }
+
+    .logo-small {
+        opacity: 1;
+    }
+}
+
+/* ========== MOBILE (425px) ========== */
+@media (max-width: 425px) {
+    .gradient-section {
+        padding: 40px 0;
+        min-height: auto;
+    }
+    .request-demo-overlay {
+    position: absolute;
+    top: 2px;
+    left: -1px;
+    background: #fff;
+    color: rgba(35, 30, 32, 1);
+    padding: 3px 3px 3px 3px;
+    border-radius: 9999px;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+    .gradient-container {
+        padding: 0 15px;
+    }
+
+    .hero-block {
+        margin-bottom: 30px;
+    }
+
+    .hero-block-left {
+        padding: 0;
+    }
+
+    .hero-block-title {
+        font-size: 24px;
+        line-height: 1.2;
+        margin-bottom: 15px;
+    }
+
+    .hero-block-text {
+        font-size: 14px;
+        margin-bottom: 15px;
+    }
+
+    .hero-checklist li {
+        font-size: 13px;
+        gap: 10px;
+        margin-bottom: 10px;
+    }
+
+    .check-icon {
+        width: 20px;
+        height: 20px;
+        min-width: 20px;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        margin-bottom: 30px;
+    }
+
+    .stat-item {
+        padding: 20px;
+    }
+
+    .stat-number {
+        font-size: 28px;
+        margin-bottom: 8px;
+    }
+
+    .stat-label {
+        font-size: 11px;
+    }
+
+    .dashboard-mockup-simple {
+        margin-bottom: 40px;
+        border-radius: 20px;
+    }
+
+    .functionality-header {
+        margin-bottom: 30px;
+    }
+
+    .func-title {
+        font-size: 22px;
+        margin-bottom: 10px;
+    }
+
+    .func-subtitle {
+        font-size: 14px;
+        white-space: normal;
+    }
+
+    .func-cards-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        margin-bottom: 20px;
+    }
+
+    .func-card {
+        padding: 20px;
+    }
+
+    .func-card-title {
+        font-size: 18px;
+        margin-bottom: 8px;
+    }
+
+    .func-card-text {
+        font-size: 14px;
+    }
+
+    /* Слайдер для скриншотов */
+    .software-screenshots-grid {
+        display: flex;
+        overflow-x: auto;
+        gap: 15px;
+        scroll-snap-type: x mandatory;
+        padding: 0 0 10px 0;
+        margin-bottom: 30px;
+    }
+
+    .screenshot-card {
+        flex: 0 0 calc(100% - 10px);
+        scroll-snap-align: start;
+        min-width: 280px;
+        padding: 15px;
+        border-radius: 16px;
+    }
+
+    .screenshot-card img {
+        border-radius: 12px;
+    }
+
+    .solutions-section {
+        padding: 40px 15px;
+        min-height: auto;
+    }
+
+    .solutions-header {
+        margin-bottom: 30px;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+        margin-bottom: 8px;
+    }
+
+    .section-subtitle {
+        font-size: 14px;
+        white-space: normal;
+    }
+
+    /* Слайдер для карточек решений */
+    .solutions-grid {
+        display: flex;
+        overflow-x: auto;
+        gap: 12px;
+        scroll-snap-type: x mandatory;
+        padding: 0 0 10px 0;
+        margin-bottom: 20px;
+    }
+
+    .glass-card {
+        flex: 0 0 calc(100% - 10px);
+        scroll-snap-align: start;
+        min-width: 280px;
+        height: auto;
+        padding: 20px;
+        border-radius: 16px;
+        min-height: 150px;
+    }
+
+    .wide-card {
+        grid-column: auto;
+        flex: 0 0 calc(100% - 10px);
+    }
+
+    .glass-card h3 {
+        font-size: 18px;
+        margin-bottom: 5px;
+    }
+
+    .card-content {
+        margin-top: 10px;
+    }
+
+    .card-content p {
+        font-size: 14px;
+    }
+
+    .icon-box {
+        width: 40px;
+        height: 40px;
+        margin-bottom: 15px;
+    }
+
+    .icon-box svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .toggle-btn {
+        width: 32px;
+        height: 32px;
+    }
+
+    .demo-cta-section {
+        padding: 40px 15px;
+    }
+
+    .demo-cta-container {
+        padding: 30px 20px;
+        border-radius: 20px;
+    }
+
+    .demo-cta-title {
+        font-size: 18px;
+        margin-bottom: 20px;
+    }
+
+    .demo-cta-content h3 {
+        font-size: 16px;
+    }
+
+    .demo-cta-content p {
+        font-size: 14px;
+    }
+
+    .demo-cta-banner {
+        padding: 20px;
+        border-radius: 16px;
+        margin-top: 20px;
+    }
+
+    .demo-cta-banner h3 {
+        font-size: 16px;
+        margin-bottom: 15px;
+    }
+
+    .demo-cta-btn {
+        padding: 12px 20px;
+        font-size: 14px;
+    }
+
+    .business-section {
+        padding: 40px 15px;
+        min-height: auto;
+    }
+
+    .business-title {
+        font-size: 20px;
+        margin-bottom: 30px;
+    }
+
+    /* Слайдер для бизнес карточек */
+    .business-grid {
+        display: flex;
+        overflow-x: auto;
+        gap: 12px;
+        scroll-snap-type: x mandatory;
+        padding: 0 0 10px 0;
+    }
+
+    .business-card {
+        flex: 0 0 calc(100% - 10px);
+        scroll-snap-align: start;
+        min-width: 280px;
+        padding: 20px;
+        border-radius: 16px;
+        min-height: auto;
+    }
+
+    .business-card-main {
+        flex: 0 0 calc(100% - 10px);
+        padding: 25px;
+    }
+
+    .business-card-centered {
+        text-align: center;
+    }
+
+    .business-icon {
+        width: 48px;
+        height: 48px;
+        margin: 0 auto 12px;
+    }
+
+    .business-card-title {
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+
+    .business-description {
+        font-size: 14px;
+    }
+
+    mission-section { padding: 40px 0; }
+    
+    .mission-container {
+        align-items: center; /* Центрируем блоки (картинку) */
+        text-align: center;  /* Центрируем текст */
+    }
+
+    .mission-title {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    .mission-text-content p {
+        font-size: 14px;
+        margin-bottom: 12px;
+    }
+
+    .mission-image-wrapper-rel {
+        /* Центрируем блок с картинкой */
+        margin-left: auto;
+        margin-right: auto;
+        /* Небольшой отступ справа, чтобы кнопка (которая right: -15px) визуально влезала */
+        max-width: 90%; 
+    }
+
+    .mission-cta-btn {
+        padding: 12px 20px;
+        font-size: 14px;
+    }
+
+    .reports-section {
+        padding: 40px 15px;
+        min-height: auto;
+    }
+
+    .reports-container {
+        max-width: 100%;
+    }
+
+    .reports-main-title {
+        font-size: 20px;
+        margin-bottom: 30px;
+    }
+
+    /* Слайдер для отчетов */
+    .reports-grid {
+        display: flex;
+        overflow-x: auto;
+        gap: 12px;
+        scroll-snap-type: x mandatory;
+        padding: 0 0 10px 0;
+        margin-bottom: 20px;
+    }
+
+    .report-card {
+        flex: 0 0 calc(100% - 10px);
+        scroll-snap-align: start;
+        min-width: 280px;
+        padding: 20px;
+        border-radius: 16px;
+    }
+
+    .report-category {
+        font-size: 12px;
+    }
+
+    .report-title {
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+
+    .report-excerpt {
+        font-size: 13px;
+    }
+
+    .report-image-wrapper {
+        height: 150px;
+        margin: 15px 0;
+        border-radius: 12px;
+    }
+
+    .contact-section {
+        padding: 40px 15px;
+    }
+
+    .contact-title {
+        font-size: 20px;
+        margin-bottom: 30px;
+    }
+
+    .contact-content-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-info {
+        margin-bottom: 30px;
+    }
+
+    .info-group {
+        margin-bottom: 20px;
+    }
+
+    .info-group label {
+        font-size: 12px;
+    }
+
+    .info-group p,
+    .info-group a {
+        font-size: 14px;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .form-group label {
+        font-size: 13px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        font-size: 14px;
+        padding: 10px 12px;
+    }
+
+    .form-group textarea {
+        min-height: 100px;
+    }
+
+    .submit-btn {
+        padding: 12px 20px;
+        font-size: 14px;
+    }
+
+    .main-footer {
+        padding: 40px 15px;
+    }
+
+    .footer-nav-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        text-align: center; /* Гарантируем центр на мобильных */
+    }
+    
+    .footer-column {
+        align-items: center; /* Выравнивание колонок по центру */
+    }
+    
+    .newsletter-input-wrapper {
+        margin-top: 15px;
+        margin-left: auto;  /* Центрируем */
+        margin-right: auto; /* Центрируем */
+    }
+
+    .footer-column h4 {
+        font-size: 14px;
+        margin-bottom: 12px;
+    }
+
+    .footer-column a {
+        font-size: 13px;
+    }
+
+    .footer-newsletter h4 {
+        font-size: 14px;
+    }
+
+    .newsletter-input-wrapper {
+        margin-top: 10px;
+    }
+
+    .footer-bottom {
+        padding: 20px 0;
+        text-align: center;
+    }
+
+    .footer-logo-img {
+        height: 24px;
+    }
+
+    .tagline {
+        font-size: 13px;
+        margin: 10px 0;
+    }
+
+    .copyright {
+        font-size: 12px;
+    }
+
+    .footer-legal-links {
+        justify-content: center;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+
+    .footer-legal-links a {
+        font-size: 12px;
+    }
+
+    /* Адаптив для меню и логотипа на мобиле */
+    .logo-link {
+        top: 12px;
+        left: 12px;
+    }
+
+    .logo-pill {
+        width: 44px;
+        height: 44px;
+        padding: 0 !important;
+    }
+
+    .logo-pill img {
+        height: 16px;
+    }
+
+    .menu-toggle {
+        top: 12px;
+        right: 12px;
+        width: 44px;
+        height: 44px;
+        padding: 0;
+        border-radius: 50%;
+        font-size: 0;
+    }
+
+    .menu-toggle::after {
+        width: 14px;
+        height: 1.5px;
+        box-shadow: 0 -4px 0 #fff, 0 4px 0 #fff;
+    }
+
+    body.scrolled .logo-pill {
+        width: 44px;
+        height: 44px;
+    }
+}
+
+/* ========== SLIDER SMOOTH SCROLLING ========== */
+@supports (scroll-behavior: smooth) {
+    .software-screenshots-grid,
+    .solutions-grid,
+    .business-grid,
+    .reports-grid {
+        scroll-behavior: smooth;
+    }
+}
+
+/* Webkit scrollbar styling for sliders */
+.software-screenshots-grid::-webkit-scrollbar,
+.solutions-grid::-webkit-scrollbar,
+.business-grid::-webkit-scrollbar,
+.reports-grid::-webkit-scrollbar {
+    height: 4px;
+}
+
+.software-screenshots-grid::-webkit-scrollbar-track,
+.solutions-grid::-webkit-scrollbar-track,
+.business-grid::-webkit-scrollbar-track,
+.reports-grid::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+}
+
+.software-screenshots-grid::-webkit-scrollbar-thumb,
+.solutions-grid::-webkit-scrollbar-thumb,
+.business-grid::-webkit-scrollbar-thumb,
+.reports-grid::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 2px;
+}
+
+.software-screenshots-grid::-webkit-scrollbar-thumb:hover,
+.solutions-grid::-webkit-scrollbar-thumb:hover,
+.business-grid::-webkit-scrollbar-thumb:hover,
+.reports-grid::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5);
 }

@@ -1,10 +1,33 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+    // Initialize mobile logo state on load
+    const initializeMobileUI = () => {
+        if (window.innerWidth <= 768) {
+            const logoPill = document.querySelector('.logo-pill');
+            const logoBig = document.querySelector('.logo-big');
+            const logoSmall = document.querySelector('.logo-small');
+            
+            if (logoPill && logoBig && logoSmall) {
+                // Set logo to compact state on mobile
+                logoBig.style.opacity = '0';
+                logoSmall.style.opacity = '1';
+            }
+        }
+    };
+
+    initializeMobileUI();
+    window.addEventListener('resize', initializeMobileUI);
+
     const mainItems = document.querySelectorAll('.main-nav .nav-item');
     const subMenus = document.querySelectorAll('.sub-nav');
     const subMenuContainer = document.querySelector('.submenu-container');
     let hideTimeout;
-
+    AOS.init({
+        once: true,
+        disable: false,
+        mirror: false,
+        offset: 120,
+    });
     const hideAllMenus = () => {
         subMenus.forEach(menu => menu.classList.remove('active-sub'));
         mainItems.forEach(item => item.classList.remove('active'));
@@ -176,4 +199,51 @@ document.addEventListener('DOMContentLoaded', () => {
     if (typeof AOS !== 'undefined') {
         AOS.init({ duration: 800, once: true });
     }
+
+    // Mobile sliders setup
+    const initSlider = (gridSelector) => {
+        const grids = document.querySelectorAll(gridSelector);
+        grids.forEach(grid => {
+            if (window.innerWidth <= 425 && grid.classList.contains('software-screenshots-grid') || 
+                grid.classList.contains('solutions-grid') || 
+                grid.classList.contains('business-grid') ||
+                grid.classList.contains('reports-grid')) {
+                
+                // Add scroll indicators/dots
+                const items = grid.querySelectorAll('[class*="card"]');
+                let touchStartX = 0;
+                let touchEndX = 0;
+
+                grid.addEventListener('touchstart', (e) => {
+                    touchStartX = e.changedTouches[0].screenX;
+                }, false);
+
+                grid.addEventListener('touchend', (e) => {
+                    touchEndX = e.changedTouches[0].screenX;
+                }, false);
+
+                // Smooth snap scrolling
+                grid.addEventListener('scroll', () => {
+                    const scrollLeft = grid.scrollLeft;
+                    const itemWidth = grid.querySelector('[class*="card"]').offsetWidth + 12;
+                    const index = Math.round(scrollLeft / itemWidth);
+                }, { passive: true });
+            }
+        });
+    };
+
+    // Initialize sliders on load and resize
+    const setupMobileSliders = () => {
+        if (window.innerWidth <= 425) {
+            initSlider('.software-screenshots-grid');
+            initSlider('.solutions-grid');
+            initSlider('.business-grid');
+            initSlider('.reports-grid');
+        }
+    };
+
+    setupMobileSliders();
+
+    window.addEventListener('resize', setupMobileSliders);
 });
+

@@ -246,4 +246,41 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.addEventListener('resize', setupMobileSliders);
 });
+document.addEventListener('DOMContentLoaded', () => {
+
+    // --- 1. Инициализация Lenis ---
+    const lenis = new Lenis({
+        duration: 1.2,       // Длительность скролла (чем больше, тем плавнее)
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Функция плавности
+        direction: 'vertical', 
+        gestureDirection: 'vertical',
+        smooth: true,
+        mouseMultiplier: 1,
+        smoothTouch: false,  // На мобильных лучше оставлять нативный скролл
+        touchMultiplier: 2,
+    });
+
+    // --- 2. Связка Lenis + GSAP + AOS ---
+    // Обновляем ScrollTrigger (если будете использовать его в GSAP)
+    // lenis.on('scroll', ScrollTrigger.update); 
+
+    // Основной цикл анимации (requestAnimationFrame)
+    function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+
+    // Интеграция с AOS (чтобы блоки появлялись плавно при скролле Lenis)
+    // AOS полагается на событие scroll, Lenis его вызывает, но иногда нужно принудительно
+    lenis.on('scroll', () => {
+        // Если вдруг AOS будет подтупливать, можно раскомментировать:
+        // AOS.refresh(); 
+    });
+
+    // ... ВАШ ОСТАЛЬНОЙ КОД (меню, слайдеры и т.д.) ...
+    
+    // ... Initialize Mobile UI ...
+    // ...
+});
 

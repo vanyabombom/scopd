@@ -3,6 +3,25 @@ html, body {
     max-width: 100%;
     overflow-x: hidden;
 }
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important; /* Отключаем нативный плавный скролл, если он есть */
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none; /* Улучшает производительность при скролле над iframe */
+}
 @font-face {
     font-family: 'Volte';
     src: url('fonts/Volte-Medium.woff2') format('woff2'),
@@ -2678,7 +2697,6 @@ body.scrolled .menu-toggle::after {
     }
 }
 
-/* Webkit scrollbar styling for sliders */
 .software-screenshots-grid::-webkit-scrollbar,
 .solutions-grid::-webkit-scrollbar,
 .business-grid::-webkit-scrollbar,

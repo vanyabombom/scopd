@@ -34,26 +34,22 @@
     font-style: normal;
 }
 html {
-    /* Разрешаем скролл, но убираем горизонтальный */
     overflow-y: auto;
     overflow-x: hidden;
-    /* ВАЖНО: сбрасываем высоту, чтобы не было второго скролла */
     height: auto;
     min-height: 100%;
 }
 
 body {
     width: 100%;
-    /* У body не должно быть своего скролла */
     overflow-y: visible; 
     overflow-x: hidden;
-    /* Высота должна тянуться за контентом */
     height: auto; 
     margin: 0;
     padding: 0;
 }
 
-/* Настройки для Lenis (чтобы не ломался) */
+
 html.lenis, html.lenis body {
     height: auto;
 }
@@ -74,7 +70,6 @@ html.lenis, html.lenis body {
     pointer-events: none;
 }
 
-/* Исправленный layout-wrapper */
 .layout-wrapper {
     font-family: 'Volte', 'Inter', sans-serif;
     margin: 0;
@@ -83,8 +78,6 @@ html.lenis, html.lenis body {
     color: #333;
     position: relative;
     width: 100%;
-    /* ВАЖНО: Убираем отсюда overflow и height, 
-       чтобы этот блок не становился скролл-контейнером */
     overflow: visible; 
 }
 
@@ -94,7 +87,7 @@ html.lenis, html.lenis body {
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: fill; /* Растягивает видео точно по размеру экрана */
+    object-fit: fill; 
     z-index: -1;
 }
 

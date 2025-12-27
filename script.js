@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // --- 1. ПЛАВНЫЙ СКРОЛЛ (LENIS) ---
     const lenis = new Lenis({
         duration: 1.2,
         easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -22,6 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // --- 2. МОБИЛЬНОЕ МЕНЮ И ЛОГОТИП ---
     const initializeMobileUI = () => {
         if (window.innerWidth <= 768) {
             const logoPill = document.querySelector('.logo-pill');
@@ -113,6 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // --- 3. ХЕДЕР ПРИ СКРОЛЛЕ ---
     window.addEventListener('scroll', () => {
         const scrollY = window.scrollY;
         const threshold = 50;
@@ -123,16 +126,20 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // --- 4. КАРТОЧКИ (ГЛАВНАЯ СТРАНИЦА) ---
     const cards = document.querySelectorAll('.glass-card');
 
     cards.forEach(card => {
         const btn = card.querySelector('.toggle-btn');
+        if (!btn) return; // Проверка, есть ли кнопка
+
         const arrow = card.querySelector('.arrow-icon');
         const content = card.querySelector('.card-content');
         const flash = card.querySelector('.flash-layer');
         let isOpen = false;
 
         function triggerFlash() {
+            if (!flash) return;
             const gradientColors = [
                 'rgba(252, 241, 132, 1)',
                 'rgba(250, 180, 130, 1)',
@@ -151,7 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         btn.addEventListener('click', (e) => {
-            e.stopPropagation();
+            e.stopPropagation(); // Это важно, чтобы клик не всплывал
             triggerFlash();
 
             if (!isOpen) {
@@ -169,6 +176,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // --- 5. БОКОВОЕ МЕНЮ ---
     const menuToggle = document.querySelector('.menu-toggle');
     const sideMenuOverlay = document.querySelector('.side-menu-overlay');
     const closeMenuBtn = document.querySelector('.close-menu-btn');
@@ -200,6 +208,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // --- 6. БИЗНЕС КАРТОЧКИ ---
     const businessCards = document.querySelectorAll('.business-card:not(.business-card-main)');
 
     businessCards.forEach(card => {
@@ -212,29 +221,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // --- 7. СЛАЙДЕРЫ (МОБИЛЬНЫЕ) ---
     const initSlider = (gridSelector) => {
         const grids = document.querySelectorAll(gridSelector);
         grids.forEach(grid => {
-            if (window.innerWidth <= 425 && (
-                grid.classList.contains('software-screenshots-grid') || 
-                grid.classList.contains('solutions-grid') || 
-                grid.classList.contains('business-grid') ||
-                grid.classList.contains('reports-grid'))) {
-                
-                const items = grid.querySelectorAll('[class*="card"]');
-                let touchStartX = 0;
-                let touchEndX = 0;
-
-                grid.addEventListener('touchstart', (e) => {
-                    touchStartX = e.changedTouches[0].screenX;
-                }, false);
-
-                grid.addEventListener('touchend', (e) => {
-                    touchEndX = e.changedTouches[0].screenX;
-                }, false);
-
-                grid.addEventListener('scroll', () => {
-                }, { passive: true });
+            if (window.innerWidth <= 425) { 
+                // Просто инициализация скролла, логика тач событий для нативного скролла не обязательна
             }
         });
     };
@@ -250,4 +242,64 @@ document.addEventListener('DOMContentLoaded', () => {
 
     setupMobileSliders();
     window.addEventListener('resize', setupMobileSliders);
+
+
+    // ==========================================
+    // --- 8. ЛОГИКА КАЛЬКУЛЯТОРА (НОВОЕ) ---
+    // ==========================================
+    const calcBtn = document.querySelector('.calc-black-btn');
+
+    if (calcBtn) {
+        calcBtn.addEventListener('click', (e) => {
+            e.preventDefault(); // На всякий случай, если кнопка внутри формы
+
+            // 1. Получаем все инпуты из левой колонки (в том порядке, как они идут в HTML)
+            const inputs = document.querySelectorAll('.calc-form input[type="number"]');
+            
+            // Проверка, нашли ли мы инпуты
+            if(inputs.length === 0) return;
+
+            // Извлекаем значения (с защитой от пустых полей)
+            const onlineClients = parseFloat(inputs[0].value) || 0;
+            const screenInterval = parseFloat(inputs[1].value) || 60;
+            const deferredClients = parseFloat(inputs[2].value) || 0;
+            const screenIntervalDef = parseFloat(inputs[3].value) || 60;
+            const screenshotSize = parseFloat(inputs[4].value) || 20; // KB
+            const shadowCopyVol = parseFloat(inputs[5].value) || 50; // MB
+            
+            // 2. Логика расчета (ПРИМЕРНАЯ - настрой под реальные формулы)
+            // Трафик от одного клиента (МБ/день) = (3600 / интервал * 8 часов * размер) / 1024
+            const trafficPerClient = ((3600 / screenInterval) * 8 * screenshotSize) / 1024;
+            
+            // Общий трафик
+            const totalTraffic = (trafficPerClient * onlineClients) + ((trafficPerClient * deferredClients) * 0.5); // Допустим, отложенные меньше грузят
+            
+            // Место для shadow copy
+            const shadowSpace = (onlineClients + deferredClients) * shadowCopyVol;
+
+            // База данных (примерно 10% от трафика)
+            const dbSize = totalTraffic * 0.1;
+
+            // RAM и CPU (примерно)
+            const cpuCores = Math.ceil((onlineClients + deferredClients) / 50) + 2;
+            const ramSize = Math.ceil((onlineClients + deferredClients) / 20) + 4;
+
+            // 3. Вывод результатов в правую колонку
+            const results = document.querySelectorAll('.results-list input[type="text"]');
+            
+            if(results.length > 0) {
+                results[0].value = trafficPerClient.toFixed(2) + " MB"; // Traffic one client
+                results[1].value = totalTraffic.toFixed(2) + " MB";     // Total traffic
+                results[2].value = (deferredClients * 0.5).toFixed(2) + " GB"; // Deferred space
+                results[3].value = (shadowSpace / 1024).toFixed(2) + " GB";    // Shadow space
+                results[4].value = "HDD / SSD";                        // Drive type shadow
+                results[5].value = dbSize.toFixed(2) + " MB";          // DB Size
+                results[6].value = "SSD NVMe";                         // Drive type SQL
+                results[7].value = cpuCores + " Cores";                // CPU
+                results[8].value = ramSize + " GB";                    // RAM
+                results[9].value = Math.ceil(cpuCores * 0.8) + " Cores"; // SQL CPU
+                results[10].value = Math.ceil(ramSize * 0.6) + " GB";    // SQL RAM
+            }
+        });
+    }
 });

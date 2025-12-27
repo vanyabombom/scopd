@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resource Calculator - SCOPD</title>
+    <link rel="icon" href="img/icon.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+</head>
+<style>
+    .nav-item { color:#ffffff; }
+    .sub-nav .nav-item { color:rgba(35, 30, 32, 1); }
+</style>
+<body class="layout-wrapper">
+
+    <section class="hero-section calculator-header">
+        <a href="index.html" class="logo-link">
+            <div class="pill-nav logo-pill glass-effect">
+                <img src="img/big-white-logo.png" alt="Logo" class="logo-big">
+                <img src="img/small-logo.png" alt="Logo" class="logo-small">
+            </div>
+        </a>
+
+        <div class="menu-toggle glass-effect">Menu</div>
+
+        <div class="nav-wrapper">
+            <nav class="pill-nav main-nav glass-effect">
+                <div class="nav-item" data-target="company">Company <svg class="arrow" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                <div class="nav-item active" data-target="resources">Resources <svg class="arrow" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                <div class="nav-item" data-target="contact">Contact us <svg class="arrow" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                <div class="nav-item simple">Partners</div>
+                <div class="nav-item simple">Request Demo</div>
+            </nav>
+
+            <div class="submenu-container">
+                <div id="company" class="pill-nav sub-nav glass-effect">
+                    <div class="nav-item icon-item"><span class="icon">❶</span> About us</div>
+                    <div class="nav-item icon-item"><span class="icon">❶</span> Use Cases</div>
+                </div>
+                <div id="resources" class="pill-nav sub-nav glass-effect active-sub">
+                    <div class="nav-item icon-item"><span class="icon">❶</span> Calculator</div>
+                    <div class="nav-item icon-item"><span class="icon">❶</span> Help & Support</div>
+                    <div class="nav-item icon-item"><span class="icon">❶</span> Blog</div>
+                </div>
+                <div id="contact" class="pill-nav sub-nav glass-effect">
+                    <div class="nav-item icon-item"><span class="icon">❶</span> Reach Out</div>
+                    <div class="nav-item icon-item"><span class="icon">❶</span> Schedule a Meeting</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="header-title-container">
+            <h1 data-aos="fade-down">RESOURCE CALCULATOR</h1>
+        </div>
+    </section>
+
+    <section class="gradient-section calc-page-section">
+        <div class="gradient-container">
+            
+            <div class="calc-grid-container" data-aos="fade-up">
+                
+                <div class="glass-wrapper">
+                    <div class="calc-card white-glass">
+                        <h2 class="calc-h2">SERVER AND CLIENT RESOURCE CALCULATOR</h2>
+                        <p class="calc-desc">The calculation is approximate and should be used for reference only. Actual numbers will always differ from calculated ones.</p>
+
+                        <div class="calc-form">
+                            <div class="calc-row">
+                                <label>Number of online clients:</label>
+                                <input type="number" value="100">
+                            </div>
+                            <div class="calc-row">
+                                <label>Screenshot interval (sec):</label>
+                                <input type="number" value="60">
+                            </div>
+                            <div class="calc-row checkbox-row">
+                                <label>Use proxy server:</label>
+                                <div class="cb-wrap">
+                                    <input type="checkbox" id="p1"><label for="p1">Yes</label>
+                                </div>
+                            </div>
+
+                            <hr class="calc-hr">
+
+                            <div class="calc-row">
+                                <div class="label-col">
+                                    <label>Number of deferred clients:</label>
+                                    <span class="small-text">Deferred client works in delayed capturing mode, they accumulate data locally and transfer to the server only on request.</span>
+                                </div>
+                                <input type="number" value="0">
+                            </div>
+                            <div class="calc-row">
+                                <label>Screenshot interval (sec):</label>
+                                <input type="number" value="60">
+                            </div>
+                            <div class="calc-row checkbox-row">
+                                <label>Use proxy server:</label>
+                                <div class="cb-wrap">
+                                    <input type="checkbox" id="p2"><label for="p2">Yes</label>
+                                </div>
+                            </div>
+
+                            <hr class="calc-hr">
+
+                            <div class="calc-row">
+                                <div class="label-col">
+                                    <label>Average screenshot size (KB):</label>
+                                    <span class="small-text">Advanced size depends heavily on quality settings (usually 20 KB is common).</span>
+                                </div>
+                                <input type="number" value="20">
+                            </div>
+                            <div class="calc-row">
+                                <div class="label-col">
+                                    <label>Average shadow copy volume (MB):</label>
+                                    <span class="small-text">Typically, expect more average volume of files sent to shadow/backup/print per working day.</span>
+                                </div>
+                                <input type="number" value="50">
+                            </div>
+                            <div class="calc-row">
+                                <label>Average shadow copy volume (MB):</label>
+                                <input type="number" value="50">
+                            </div>
+
+                            <div class="calc-row radio-row">
+                                <label>Working days per week:</label>
+                                <div class="radio-group">
+                                    <label><input type="radio" name="days" value="4"> 4 days</label>
+                                    <label><input type="radio" name="days" value="5" checked> 5 days</label>
+                                    <label><input type="radio" name="days" value="6"> 6 days</label>
+                                    <label><input type="radio" name="days" value="7"> 7 days</label>
+                                </div>
+                            </div>
+
+                            <div class="calc-row checkbox-row">
+                                <label>Use proxy server:</label>
+                                <div class="cb-wrap">
+                                    <input type="checkbox" id="p3"><label for="p3">Use the same machine with main server</label>
+                                </div>
+                            </div>
+
+                            <button class="calc-black-btn">Calculate resources</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-wrapper">
+                    <div class="calc-card white-glass">
+                        <h2 class="calc-h2">TRAFFIC FROM ONE ONLINE CLIENT TO SERVER:</h2>
+
+                        <div class="results-list">
+                            <div class="res-row">
+                                <span>Traffic from one online client to server:</span>
+                                <input type="text" readonly placeholder="0.00">
+                            </div>
+                            <div class="res-row">
+                                <span>Total traffic from all clients to server:</span>
+                                <input type="text" readonly placeholder="0.00">
+                            </div>
+                            <div class="res-row">
+                                <span>Required space on deferred machines:</span>
+                                <input type="text" readonly placeholder="0.00">
+                            </div>
+                            <div class="res-row">
+                                <span>Required server space for shadow copies:</span>
+                                <input type="text" readonly placeholder="0.00">
+                            </div>
+                            <div class="res-row">
+                                <span>Recommended server drive type for shadow copies:</span>
+                                <input type="text" readonly placeholder="--">
+                            </div>
+                            <div class="res-row">
+                                <span>Estimated SQL database size:</span>
+                                <input type="text" readonly placeholder="0.00">
+                            </div>
+                            <div class="res-row">
+                                <span>Recommended drive type for SQL database:</span>
+                                <input type="text" readonly placeholder="--">
+                            </div>
+                            <div class="res-row">
+                                <span>Recommended server CPU cores:</span>
+                                <input type="text" readonly placeholder="0">
+                            </div>
+                            <div class="res-row">
+                                <span>Recommended server RAM (GB):</span>
+                                <input type="text" readonly placeholder="0">
+                            </div>
+                            <div class="res-row">
+                                <span>Recommended SQL server CPU cores:</span>
+                                <input type="text" readonly placeholder="0">
+                            </div>
+                            <div class="res-row">
+                                <span>Recommended SQL server RAM (GB):</span>
+                                <input type="text" readonly placeholder="0">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            
+        </div>
+    </section>
+
+    <section class="contact-section">
+        <div class="contact-container" data-aos="fade-up">
+            <h2 class="contact-title">HAVE QUESTIONS?<br>GET IN TOUCH!</h2>
+            <div class="contact-content-grid">
+                <div class="contact-info">
+                    <div class="info-group">
+                        <label>Office</label>
+                        <p>0711, Georgia, Tbilisi, Saburtalo District, Givi Kartozia Street, No. 8 Building No. 5, Flat No. 92</p>
+                    </div>
+                    <div class="info-group">
+                        <label>Phone</label>
+                        <p>International & Premium Product sales:<br><a href="tel:+995598888826">+995598888826</a></p>
+                        <p>Please contact us via Business WhatsApp<br><a href="#" class="wa-link">WA Business</a></p>
+                    </div>
+                    <div class="info-group">
+                        <label>Email</label>
+                        <p>General questions<br><a href="mailto:info@scopd.net">info@scopd.net</a></p>
+                    </div>
+                </div>
+                <form class="contact-form">
+                    <div class="form-group"><label for="name">Name</label><input type="text" id="name"></div>
+                    <div class="form-group"><label for="email">Email Address</label><input type="email" id="email"></div>
+                    <div class="form-group">
+                        <label for="message">Enter Your Message</label>
+                        <textarea id="message" rows="4"></textarea>
+                        <span class="char-count">0/100</span>
+                    </div>
+                    <div class="form-checkbox">
+                        <input type="checkbox" id="terms" required><label for="terms">I accept the Terms</label>
+                    </div>
+                    <button type="submit" class="submit-btn">Submit <span class="submit-arrow"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 13L13 1M13 1H1M13 1V13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <div class="footer-wrapper">
+        <footer class="main-footer">
+            <div class="footer-container" data-aos="fade-up">
+                <div class="footer-nav-grid">
+                    <div class="footer-column"><h4>Company</h4><a href="#">About Us</a><a href="#">Use Cases</a></div>
+                    <div class="footer-column"><h4>Resources</h4><a href="#">Calculator</a><a href="#">Help & Support</a><a href="#">Blog</a></div>
+                    <div class="footer-column"><h4>Contact Us</h4><a href="#">Reach Out</a><a href="#">Schedule a Meeting</a></div>
+                    <div class="footer-column"><h4>Quick Links</h4><a href="#">Partners</a><a href="#">Plans</a><a href="#">Request Demo</a></div>
+                    <div class="footer-column"><h4>Socials</h4><a href="#">Linkedin</a><a href="#">Facebook</a><a href="#">WhatsApp</a><a href="#">Telegram</a></div>
+                    <div class="footer-newsletter"><h4>Subscribe to newsletter</h4><div class="newsletter-input-wrapper"><input type="email" placeholder="Your email address"><button type="button" class="newsletter-btn">Get started</button></div></div>
+                </div>
+                <div class="footer-bottom">
+                    <div class="footer-logo"><img src="img/big-white-logo.png" alt="scopd logo" class="footer-logo-img"></div>
+                    <p class="tagline">Objective data is the basis of an effective business</p>
+                    <p class="copyright">©scopd, Inc. 2026</p>
+                    <div class="footer-legal-links"><a href="#">Term of Services</a><a href="#">Privacy Policy</a><a href="#">Cookies Settings</a></div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+    <div class="side-menu-overlay">
+        <div class="side-menu-content">
+            <button class="close-menu-btn">Close</button>
+            <div class="menu-sections">
+                <div class="menu-section"><h3>Company</h3><a href="#">About Us</a><a href="#">Use Cases</a></div>
+                <div class="menu-section"><h3>Resources</h3><a href="#">Calculator</a><a href="#">Help & Support</a><a href="#">Blog</a></div>
+                <div class="menu-section"><h3>Contact Us</h3><a href="#">Reach Out</a><a href="#">Schedule a Meeting</a></div>
+            </div>
+            <hr class="menu-divider">
+            <div class="menu-footer-links"><a href="#">Partners</a><a href="#">Plans</a><a href="#">Request Demo</a></div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -556,7 +556,17 @@ body.scrolled .menu-toggle::after {
     color: #000;
 }
 
+
+
 .nav-item.active {
+    background-color: #fff;
+    color: #000;
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transform: scale(1.02);
+}
+
+.nav-item:hover:not(.active) {
     background-color: #fff;
     color: #000;
     font-weight: 600;

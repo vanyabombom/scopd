@@ -475,6 +475,13 @@ body.scrolled .menu-toggle::after {
     -webkit-backdrop-filter: blur(40px) saturate(200%);
 }
 
+.submenu-container:has(.active-sub),
+.sub-nav.active-sub,
+.sub-nav.active-sub .nav-item {
+    pointer-events: auto !important;
+    cursor: pointer;
+}
+
 .glass-effect::before {
     content: "";
     inset: 0;

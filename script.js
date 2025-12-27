@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // --- 1. ПЛАВНЫЙ СКРОЛЛ (LENIS) ---
     const lenis = new Lenis({
         duration: 1.2,
         easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -23,7 +22,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // --- 2. МОБИЛЬНОЕ МЕНЮ И ЛОГОТИП ---
     const initializeMobileUI = () => {
         if (window.innerWidth <= 768) {
             const logoPill = document.querySelector('.logo-pill');
@@ -115,7 +113,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 3. ХЕДЕР ПРИ СКРОЛЛЕ ---
     window.addEventListener('scroll', () => {
         const scrollY = window.scrollY;
         const threshold = 50;
@@ -126,12 +123,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // --- 4. КАРТОЧКИ (ГЛАВНАЯ СТРАНИЦА) ---
     const cards = document.querySelectorAll('.glass-card');
 
     cards.forEach(card => {
         const btn = card.querySelector('.toggle-btn');
-        if (!btn) return; // Проверка, есть ли кнопка
+        if (!btn) return; 
 
         const arrow = card.querySelector('.arrow-icon');
         const content = card.querySelector('.card-content');
@@ -158,7 +154,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         btn.addEventListener('click', (e) => {
-            e.stopPropagation(); // Это важно, чтобы клик не всплывал
+            e.stopPropagation(); 
             triggerFlash();
 
             if (!isOpen) {
@@ -176,7 +172,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- 5. БОКОВОЕ МЕНЮ ---
     const menuToggle = document.querySelector('.menu-toggle');
     const sideMenuOverlay = document.querySelector('.side-menu-overlay');
     const closeMenuBtn = document.querySelector('.close-menu-btn');
@@ -208,7 +203,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 6. БИЗНЕС КАРТОЧКИ ---
     const businessCards = document.querySelectorAll('.business-card:not(.business-card-main)');
 
     businessCards.forEach(card => {
@@ -221,12 +215,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // --- 7. СЛАЙДЕРЫ (МОБИЛЬНЫЕ) ---
     const initSlider = (gridSelector) => {
         const grids = document.querySelectorAll(gridSelector);
         grids.forEach(grid => {
             if (window.innerWidth <= 425) { 
-                // Просто инициализация скролла, логика тач событий для нативного скролла не обязательна
             }
         });
     };

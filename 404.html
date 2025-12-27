@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found - scopd</title>
+    <link rel="icon" href="img/icon.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+    <style>
+        /* Специфичные стили для 404 */
+
+        .hero-section {
+            background: transparent !important;
+            min-height: auto !important;
+            padding-bottom: 0 !important;
+        }
+
+        /* Убедимся, что кнопка меню всегда кликабельна */
+        .menu-toggle {
+            z-index: 1000 !important;
+            cursor: pointer;
+        }
+
+        .main-footer {
+            background-color: rgba(35, 30, 32, 1);
+            color: #fff;
+            padding: 100px 0 40px;
+            border-top-left-radius: 0px !important;
+            border-top-right-radius: 0px !important;
+        }
+
+        .error-section-wrapper {
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding-top: 60px;
+            padding-bottom: 120px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .error-content-box {
+            text-align: center;
+            position: relative;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .glass-404 {
+            font-size: 25vw;
+            font-weight: 900;
+            line-height: 1;
+            margin: 0 0 30px 0;
+            padding: 0;
+            width: 100%;
+            user-select: none;
+            color: transparent;
+            -webkit-text-stroke: 3px rgba(255, 255, 255, 0.7);
+            filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.25));
+            animation: slow-float 8s ease-in-out infinite;
+        }
+
+        .error-message-block {
+            position: relative;
+            padding: 0 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .calc-h2.error-title {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            color: #000;
+        }
+
+        .calc-desc.error-desc {
+            font-size: 1.1rem;
+            max-width: 500px;
+            margin: 0 auto;
+            color: #333;
+            font-weight: 500;
+            line-height: 1.5;
+        }
+
+        .error-btn {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            margin-top: 40px;
+            padding: 16px 45px;
+            font-size: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        @keyframes slow-float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .error-section-wrapper {
+                min-height: 60vh;
+                justify-content: flex-start;
+                padding-top: 120px;
+            }
+
+            .glass-404 {
+                font-size: 40vw;
+                -webkit-text-stroke: 2px rgba(255, 255, 255, 0.7);
+                margin-bottom: 20px;
+            }
+
+            .calc-h2.error-title {
+                font-size: 1.8rem;
+            }
+
+            .error-btn {
+                margin-top: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body class="layout-wrapper">
+
+    <section class="hero-section">
+        <a href="index.html" class="logo-link">
+            <div class="pill-nav logo-pill glass-effect">
+                <img src="img/big-logo.png" alt="Logo" class="logo-big">
+                <img src="img/small-white-logo.png" alt="Logo" class="logo-small">
+            </div>
+        </a>
+
+        <div class="menu-toggle glass-effect" id="menuToggleBtn">Menu</div>
+
+        <div class="nav-wrapper" id="navWrapperBlock">
+            <nav class="pill-nav main-nav glass-effect">
+                <div class="nav-item" data-target="company">Company <svg class="arrow" width="10" height="6"
+                        viewBox="0 0 10 6" fill="none">
+                        <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg></div>
+                <div class="nav-item" data-target="resources">Resources <svg class="arrow" width="10" height="6"
+                        viewBox="0 0 10 6" fill="none">
+                        <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg></div>
+                <div class="nav-item" data-target="contact">Contact us <svg class="arrow" width="10" height="6"
+                        viewBox="0 0 10 6" fill="none">
+                        <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg></div>
+                <div class="nav-item simple">Partners</div>
+                <div class="nav-item simple">Request Demo</div>
+            </nav>
+
+            <div class="submenu-container">
+                <div id="company" class="pill-nav sub-nav glass-effect">
+                    <div class="nav-item icon-item"><span class="icon">❶</span> About us</div>
+                    <div class="nav-item icon-item"><span class="icon">❶</span> Use Cases</div>
+                </div>
+                <div id="resources" class="pill-nav sub-nav glass-effect">
+                    <div class="nav-item icon-item"><span class="icon">❶</span> Calculator</div>
+                    <div class="nav-item icon-item"><span class="icon">❶</span> Help & Support</div>
+                    <div class="nav-item icon-item"><span class="icon">❶</span> Blog</div>
+                </div>
+                <div id="contact" class="pill-nav sub-nav glass-effect">
+                    <div class="nav-item icon-item"><span class="icon">❶</span> Reach Out</div>
+                    <div class="nav-item icon-item"><span class="icon">❶</span> Schedule a Meeting</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="gradient-section calc-page-section">
+        <div class="gradient-container">
+            <div class="error-section-wrapper" data-aos="fade-in" data-aos-duration="1200">
+                <div class="error-content-box">
+                    <h1 class="glass-404">404</h1>
+                    <div class="error-message-block">
+                        <h2 class="calc-h2 error-title">PAGE NOT FOUND</h2>
+                        <p class="calc-desc error-desc">
+                            The page you are looking for has been moved, deleted, or possibly never existed.
+                        </p>
+                        <a href="index.html" class="calc-black-btn error-btn">
+                            Back to Homepage
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="footer-wrapper">
+        <footer class="main-footer">
+            <div class="footer-container" data-aos="fade-up">
+                <div class="footer-nav-grid">
+                    <div class="footer-column">
+                        <h4>Company</h4>
+                        <a href="#">About Us</a>
+                        <a href="#">Use Cases</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Resources</h4>
+                        <a href="calculator.html">Calculator</a>
+                        <a href="#">Help & Support</a>
+                        <a href="#">Blog</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Contact Us</h4>
+                        <a href="#">Reach Out</a>
+                        <a href="#">Schedule a Meeting</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Quick Links</h4>
+                        <a href="#">Partners</a>
+                        <a href="#">Plans</a>
+                        <a href="#">Request Demo</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Socials</h4>
+                        <a href="#">Linkedin</a>
+                        <a href="#">Facebook</a>
+                        <a href="#">WhatsApp</a>
+                        <a href="#">Telegram</a>
+                    </div>
+                    <div class="footer-newsletter">
+                        <h4>Subscribe to newsletter</h4>
+                        <div class="newsletter-input-wrapper">
+                            <input type="email" placeholder="Your email address">
+                            <button type="button" class="newsletter-btn">Get started</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-bottom">
+                    <div class="footer-logo">
+                        <img src="img/big-white-logo.png" alt="scopd logo" class="footer-logo-img">
+                    </div>
+                    <p class="tagline">Objective data is the basis of an effective business</p>
+                    <p class="copyright">©scopd, Inc. 2026</p>
+
+                    <div class="footer-legal-links">
+                        <a href="#">Term of Services</a>
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Cookies Settings</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <div class="side-menu-overlay">
+            <div class="side-menu-content">
+                <button class="close-menu-btn">Close</button>
+
+                <div class="menu-sections">
+                    <div class="menu-section">
+                        <h3>Company</h3>
+                        <a href="index.html#company">About Us</a>
+                        <a href="index.html#company">Use Cases</a>
+                    </div>
+
+                    <div class="menu-section">
+                        <h3>Resources</h3>
+                        <a href="calculator.html">Calculator</a>
+                        <a href="#">Help & Support</a>
+                        <a href="#">Blog</a>
+                    </div>
+
+                    <div class="menu-section">
+                        <h3>Contact Us</h3>
+                        <a href="index.html#contact">Reach Out</a>
+                        <a href="index.html#contact">Schedule a Meeting</a>
+                    </div>
+                </div>
+
+                <hr class="menu-divider">
+
+                <div class="menu-footer-links">
+                    <a href="#">Partners</a>
+                    <a href="#">Plans</a>
+                    <a href="#">Request Demo</a>
+                </div>
+            </div>
+        </div>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const menuToggle = document.querySelector('.menu-toggle');
+                const sideMenuOverlay = document.querySelector('.side-menu-overlay');
+                const closeMenuBtn = document.querySelector('.close-menu-btn');
+
+                // Функция открытия
+                if (menuToggle && sideMenuOverlay) {
+                    menuToggle.addEventListener('click', () => {
+                        sideMenuOverlay.classList.add('active'); // Добавляем класс для показа
+                        document.body.style.overflow = 'hidden'; // Блокируем прокрутку фона
+                    });
+                }
+
+                // Функция закрытия
+                if (closeMenuBtn && sideMenuOverlay) {
+                    closeMenuBtn.addEventListener('click', () => {
+                        sideMenuOverlay.classList.remove('active');
+                        document.body.style.overflow = '';
+                    });
+                }
+
+                // Закрытие при клике на затемненную область (опционально)
+                if (sideMenuOverlay) {
+                    sideMenuOverlay.addEventListener('click', (e) => {
+                        if (e.target === sideMenuOverlay) {
+                            sideMenuOverlay.classList.remove('active');
+                            document.body.style.overflow = '';
+                        }
+                    });
+                }
+            });
+        </script>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+    <script src="script.js"></script>
+
+
+</body>
+
+</html>

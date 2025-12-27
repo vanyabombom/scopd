@@ -19,8 +19,9 @@
     .sub-nav .nav-item {
         color: rgba(35, 30, 32, 1);
     }
-    
-    #res_sql_cores_row, #res_sql_ram_row {
+
+    #res_sql_cores_row,
+    #res_sql_ram_row {
         transition: all 0.3s ease;
     }
 </style>
@@ -92,17 +93,17 @@
                             Actual numbers will always differ from calculated ones!</p>
 
                         <form name="calcform" class="calc-form" onsubmit="return false;">
-                            
+
                             <input type="checkbox" name="onlines_audio" style="display:none;">
                             <input type="checkbox" name="pp_audio" style="display:none;">
-                            
+
                             <div class="calc-row">
                                 <label>Number of online clients:</label>
-                                <input type="number" name="num_onlines" >
+                                <input type="number" name="num_onlines">
                             </div>
                             <div class="calc-row">
                                 <label>Screenshot interval (sec):</label>
-                                <input type="number" name="onlines_sshots_interval" >
+                                <input type="number" name="onlines_sshots_interval">
                             </div>
                             <div class="calc-row checkbox-row">
                                 <label>Use proxy server:</label>
@@ -122,7 +123,7 @@
                             </div>
                             <div class="calc-row">
                                 <label>Screenshot interval (sec):</label>
-                                <input type="number" name="pp_sshots_interval" >
+                                <input type="number" name="pp_sshots_interval">
                             </div>
                             <div class="calc-row checkbox-row">
                                 <label>Use proxy server:</label>
@@ -136,18 +137,20 @@
                             <div class="calc-row">
                                 <div class="label-col">
                                     <label>Average screenshot size (KB):</label>
-                                    <span class="small-text">Advanced size depends heavily on quality settings (usually 25 KB is minimum).</span>
+                                    <span class="small-text">Advanced size depends heavily on quality settings (usually
+                                        25 KB is minimum).</span>
                                 </div>
                                 <input type="number" name="avg_sshot_size">
                             </div>
                             <div class="calc-row">
                                 <div class="label-col">
                                     <label>Average shadow copy volume (MB):</label>
-                                    <span class="small-text">Specify approximate average volume of files sent to Internet/email/flash per user per day.</span>
+                                    <span class="small-text">Specify approximate average volume of files sent to
+                                        Internet/email/flash per user per day.</span>
                                 </div>
                                 <input type="number" name="avg_sc_size">
                             </div>
-                            
+
                             <div class="calc-row">
                                 <label>Data retention period (days):</label>
                                 <input type="number" name="retro">
@@ -156,8 +159,8 @@
                             <div class="calc-row radio-row">
                                 <label>Working days per week:</label>
                                 <div class="radio-group">
-                                    <label><input type="radio" name="workdays" value="4" > 4 days</label>
-                                    <label><input type="radio" name="workdays" value="5" > 5 days</label>
+                                    <label><input type="radio" name="workdays" value="4"> 4 days</label>
+                                    <label><input type="radio" name="workdays" value="5"> 5 days</label>
                                     <label><input type="radio" name="workdays" value="6"> 6 days</label>
                                     <label><input type="radio" name="workdays" value="7"> 7 days</label>
                                 </div>
@@ -166,7 +169,8 @@
                             <div class="calc-row checkbox-row">
                                 <label>Use proxy server:</label>
                                 <div class="cb-wrap">
-                                    <input type="checkbox" id="p3" name="sql_shared"><label for="p3">Use the same machine with main server</label>
+                                    <input type="checkbox" id="p3" name="sql_shared"><label for="p3">Use the same
+                                        machine with main server</label>
                                 </div>
                             </div>
 
@@ -208,8 +212,8 @@
                                 <span>Recommended drive type for SQL database:</span>
                                 <input type="text" name="res_sql_drive" readonly placeholder="--">
                             </div>
-                            
-                            <input type="hidden" name="res_sql_edition"> 
+
+                            <input type="hidden" name="res_sql_edition">
 
                             <div class="res-row">
                                 <span>Recommended server CPU cores:</span>
@@ -219,7 +223,7 @@
                                 <span>Recommended server RAM (GB):</span>
                                 <input type="text" name="res_server_ram" readonly placeholder="0">
                             </div>
-                            
+
                             <div class="res-row" id="res_sql_cores_row">
                                 <span>Recommended SQL server CPU cores:</span>
                                 <input type="text" name="res_sql_cores" id="res_sql_cores" readonly placeholder="0">
@@ -363,28 +367,120 @@
                 </div>
             </div>
         </footer>
+
+        <div class="side-menu-overlay">
+            <div class="side-menu-content">
+                <button class="close-menu-btn">Close</button>
+
+                <div class="menu-sections">
+                    <div class="menu-section">
+                        <h3>Company</h3>
+                        <a href="index.html#company">About Us</a>
+                        <a href="index.html#company">Use Cases</a>
+                    </div>
+
+                    <div class="menu-section">
+                        <h3>Resources</h3>
+                        <a href="calculator.html">Calculator</a>
+                        <a href="#">Help & Support</a>
+                        <a href="#">Blog</a>
+                    </div>
+
+                    <div class="menu-section">
+                        <h3>Contact Us</h3>
+                        <a href="index.html#contact">Reach Out</a>
+                        <a href="index.html#contact">Schedule a Meeting</a>
+                    </div>
+                </div>
+
+                <hr class="menu-divider">
+
+                <div class="menu-footer-links">
+                    <a href="#">Partners</a>
+                    <a href="#">Plans</a>
+                    <a href="#">Request Demo</a>
+                </div>
+            </div>
+        </div>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const menuToggle = document.querySelector('.menu-toggle');
+                const sideMenuOverlay = document.querySelector('.side-menu-overlay');
+                const closeMenuBtn = document.querySelector('.close-menu-btn');
+
+                // Функция открытия
+                if (menuToggle && sideMenuOverlay) {
+                    menuToggle.addEventListener('click', () => {
+                        sideMenuOverlay.classList.add('active'); // Добавляем класс для показа
+                        document.body.style.overflow = 'hidden'; // Блокируем прокрутку фона
+                    });
+                }
+
+                // Функция закрытия
+                if (closeMenuBtn && sideMenuOverlay) {
+                    closeMenuBtn.addEventListener('click', () => {
+                        sideMenuOverlay.classList.remove('active');
+                        document.body.style.overflow = '';
+                    });
+                }
+
+                // Закрытие при клике на затемненную область (опционально)
+                if (sideMenuOverlay) {
+                    sideMenuOverlay.addEventListener('click', (e) => {
+                        if (e.target === sideMenuOverlay) {
+                            sideMenuOverlay.classList.remove('active');
+                            document.body.style.overflow = '';
+                        }
+                    });
+                }
+            });
+        </script>
     </div>
-    
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script src="script.js"></script>
 
     <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navWrapper = document.querySelector('.nav-wrapper');
+
+            if (menuToggle && navWrapper) {
+                menuToggle.addEventListener('click', function () {
+                    // Переключаем класс 'active' для обертки меню
+                    navWrapper.classList.toggle('active');
+
+                    // Опционально: меняем текст кнопки или её вид
+                    menuToggle.classList.toggle('active');
+
+                    // Если нужно менять текст кнопки Меню / Закрыть
+                    if (navWrapper.classList.contains('active')) {
+                        menuToggle.textContent = 'Close';
+                    } else {
+                        menuToggle.textContent = 'Menu';
+                    }
+                });
+            }
+        });
+    </script>
+
+    <script>
         function ResCalc() {
 
-            
-            this.GetControl = function(name) {
-                
+
+            this.GetControl = function (name) {
+
                 if (document.forms['calcform'] && document.forms['calcform'].elements[name]) {
                     return document.forms['calcform'].elements[name];
                 }
-                
+
                 let els = document.getElementsByName(name);
                 if (els.length > 0) return els[0];
                 return null;
             }
 
-            
+
             this.Form = function () {
                 return document.forms['calcform'];
             }
@@ -396,7 +492,7 @@
                 let v = parseInt(control.value);
                 if (isNaN(v) || v < v_min || v > v_max) {
                     control.focus();
-                    if(control.select) control.select();
+                    if (control.select) control.select();
                     alert('Please enter a value between ' + v_min + ' and ' + v_max);
                     throw ('Validation error');
                 }
@@ -467,14 +563,14 @@
                     let avg_sshot_size = this.GetFieldValue('avg_sshot_size', 5, 1000) * 1024;
                     let avg_sc_size_per_sec = this.GetFieldValue('avg_sc_size', 0, 1000) * 1024 * 1024 / (9 * 60 * 60);
                     let retro = this.GetFieldValue('retro', 1, 1000);
-                    
-                    
-                    let workdays = 5; 
+
+
+                    let workdays = 5;
                     let wd_radios = document.getElementsByName('workdays');
-                    for(let i=0; i<wd_radios.length; i++){
-                        if(wd_radios[i].checked) workdays = parseInt(wd_radios[i].value);
+                    for (let i = 0; i < wd_radios.length; i++) {
+                        if (wd_radios[i].checked) workdays = parseInt(wd_radios[i].value);
                     }
-                    
+
                     let sql_shared = this.GetFieldChecked('sql_shared');
 
                     let k_sec2retro = (workdays / 7) * retro * 9 * 3600;
@@ -520,13 +616,13 @@
                     this.SetFieldSimple('res_sql_cores', res_sql_cores);
                     this.SetFieldSimple('res_sql_ram', res_sql_ram);
 
-                    
+
                     document.getElementById('results').style.display = '';
                     let sqlCoresRow = document.getElementById('res_sql_cores_row');
                     let sqlRamRow = document.getElementById('res_sql_ram_row');
-                    
-                    if(sqlCoresRow) sqlCoresRow.style.display = vis_sql ? '' : 'none';
-                    if(sqlRamRow) sqlRamRow.style.display = vis_sql ? '' : 'none';
+
+                    if (sqlCoresRow) sqlCoresRow.style.display = vis_sql ? '' : 'none';
+                    if (sqlRamRow) sqlRamRow.style.display = vis_sql ? '' : 'none';
 
                 } catch (e) {
                     console.error(e);
@@ -536,11 +632,12 @@
         }
 
         const calculator = new ResCalc();
-        
+
         function runCalculation(e) {
-            e.preventDefault(); 
+            e.preventDefault();
             calculator.Calc();
         }
     </script>
 </body>
+
 </html>

@@ -11,28 +11,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
     <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
 </head>
-<style>
-    .nav-item {
-        color: #ffffff;
-    }
-
-    .sub-nav .nav-item {
-        color: rgba(35, 30, 32, 1);
-    }
-
-    #res_sql_cores_row,
-    #res_sql_ram_row {
-        transition: all 0.3s ease;
-    }
-</style>
 
 <body class="layout-wrapper">
 
     <section class="hero-section calculator-header">
         <a href="index.html" class="logo-link">
             <div class="pill-nav logo-pill glass-effect">
-                <img src="img/big-white-logo.png" alt="Logo" class="logo-big">
-                <img src="img/small-white-logo.png" alt="Logo" class="logo-small">
+                <img src="img/big-logo.png" alt="Logo" class="logo-big">
+                <img src="img/small-logo.png" alt="Logo" class="logo-small">
             </div>
         </a>
 
@@ -172,7 +158,7 @@
                             </div>
 
                             <div class="calc-row checkbox-row">
-                                <label>Use proxy server:</label>
+                                <label>SQL server location:</label>
                                 <div class="cb-wrap">
                                     <input type="checkbox" id="p3" name="sql_shared"><label for="p3">Use the same
                                         machine with main server</label>
@@ -218,7 +204,11 @@
                                 <input type="text" name="res_sql_drive" readonly placeholder="--">
                             </div>
 
-                            <input type="hidden" name="res_sql_edition">
+                            <div class="res-row res-multiline">
+                                <span>Recommended SQL server edition:</span>
+                                <textarea name="res_sql_edition" readonly placeholder="--"></textarea>
+                            </div>
+
 
                             <div class="res-row">
                                 <span>Recommended server CPU cores:</span>
@@ -382,6 +372,14 @@
                         <div class="certs-wrapper">
                             <img src="img/certificates.jpg" alt="ISO Certificates" class="certs-img">
                         </div>
+
+                        <a href="#" class="scroll-top-btn glass-effect" aria-label="Scroll to top">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 19V5M12 5L5 12M12 5L19 12" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </a>
                     </div>
 
                 </div>

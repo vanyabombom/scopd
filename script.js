@@ -236,3 +236,32 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('resize', setupMobileSliders);
 
 });
+document.addEventListener('DOMContentLoaded', () => {
+    const scrollTopBtn = document.querySelector('.scroll-top-btn');
+
+    if (scrollTopBtn) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollTopBtn.classList.add('active');
+            } else {
+                scrollTopBtn.classList.remove('active');
+            }
+        });
+
+        
+        scrollTopBtn.addEventListener('click', (e) => {
+            e.preventDefault(); 
+            
+            
+            if (typeof lenis !== 'undefined') {
+                lenis.scrollTo(0); 
+            } else {
+                
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    }
+});

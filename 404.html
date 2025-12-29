@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page Not Found - scopd</title>
+    <title>Page Not Found - SCOPD</title>
     <link rel="icon" href="img/icon.png" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
@@ -54,6 +54,7 @@
             align-items: center;
             justify-content: center;
         }
+
         .glass-404 {
             font-size: 25vw;
             font-weight: 900;
@@ -185,7 +186,10 @@
                 </div>
                 <div id="contact" class="pill-nav sub-nav glass-effect">
                     <div class="nav-item icon-item"><span class="icon">❶</span> Reach Out</div>
-                    <div class="nav-item icon-item"><span class="icon">❶</span> Schedule a Meeting</div>
+                    <a href="https://calendly.com/kateleo-mail/30min" class="nav-item icon-item"
+                        style="text-decoration: none; color: inherit;" target="_blank">
+                        <span class="icon">❶</span> Schedule a Meeting
+                    </a>
                 </div>
             </div>
         </div>
@@ -228,7 +232,7 @@
                     <div class="footer-column">
                         <h4>Contact Us</h4>
                         <a href="#">Reach Out</a>
-                        <a href="#">Schedule a Meeting</a>
+                        <a href="https://calendly.com/kateleo-mail/30min" target="_blank">Schedule a Meeting</a>
                     </div>
                     <div class="footer-column">
                         <h4>Quick Links</h4>
@@ -238,10 +242,9 @@
                     </div>
                     <div class="footer-column">
                         <h4>Socials</h4>
-                        <a href="#">Linkedin</a>
-                        <a href="#">Facebook</a>
-                        <a href="#">WhatsApp</a>
-                        <a href="#">Telegram</a>
+                        <a href="https://www.linkedin.com/company/scopd-llc/about/" target="_blank">Linkedin</a>
+                        <a href="https://www.facebook.com/profile.php?id=61565695336082" target="_blank">Facebook</a>
+                        <a href="https://wa.me/995598888826" target="_blank">WhatsApp</a>
                     </div>
                     <div class="footer-newsletter">
                         <h4>Subscribe to newsletter</h4>
@@ -257,7 +260,7 @@
                         <img src="img/big-white-logo.png" alt="scopd logo" class="footer-logo-img">
                     </div>
                     <p class="tagline">Objective data is the basis of an effective business</p>
-                    <p class="copyright">©scopd, Inc. 2026</p>
+                    <p class="copyright">©SCOPD, Inc. 2026</p>
 
                     <div class="footer-legal-links">
                         <a href="#">Term of Services</a>
@@ -288,7 +291,7 @@
                     <div class="menu-section">
                         <h3>Contact Us</h3>
                         <a href="index.html#contact">Reach Out</a>
-                        <a href="index.html#contact">Schedule a Meeting</a>
+                        <a href="https://calendly.com/kateleo-mail/30min" target="_blank">Schedule a Meeting</a>
                     </div>
                 </div>
 
@@ -307,15 +310,14 @@
                 const sideMenuOverlay = document.querySelector('.side-menu-overlay');
                 const closeMenuBtn = document.querySelector('.close-menu-btn');
 
-                // Функция открытия
                 if (menuToggle && sideMenuOverlay) {
                     menuToggle.addEventListener('click', () => {
-                        sideMenuOverlay.classList.add('active'); // Добавляем класс для показа
-                        document.body.style.overflow = 'hidden'; // Блокируем прокрутку фона
+                        sideMenuOverlay.classList.add('active');
+                        document.body.style.overflow = 'hidden';
                     });
                 }
 
-                // Функция закрытия
+
                 if (closeMenuBtn && sideMenuOverlay) {
                     closeMenuBtn.addEventListener('click', () => {
                         sideMenuOverlay.classList.remove('active');
@@ -323,7 +325,7 @@
                     });
                 }
 
-                // Закрытие при клике на затемненную область (опционально)
+
                 if (sideMenuOverlay) {
                     sideMenuOverlay.addEventListener('click', (e) => {
                         if (e.target === sideMenuOverlay) {

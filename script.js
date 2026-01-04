@@ -261,7 +261,7 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('DOMContentLoaded', () => {
     // --- Modal Logic ---
     const modal = document.getElementById('demoModal');
-    const closeBtn = document.querySelector('.modal-close');
+    const closeBtn = document.querySelector('.demo-modal-close');
     const requestBtns = document.querySelectorAll('.request-demo-overlay, .demo-cta-btn');
     const body = document.body;
 
@@ -301,20 +301,21 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- Custom Select Dropdown Logic ---
-    const customSelectWrapper = document.querySelector('.custom-select-wrapper');
+    // --- Combined Messenger Input Logic ---
+    const messengerCombo = document.querySelector('.demo-modal-messenger-combo');
 
-    if (customSelectWrapper) {
-        const customSelect = customSelectWrapper.querySelector('.custom-select');
-        const trigger = customSelect.querySelector('.custom-select-trigger');
-        const options = customSelect.querySelectorAll('.custom-option');
-        const triggerText = trigger.querySelector('.messenger-text');
-        const triggerIconBox = trigger.querySelector('.messenger-icon');
+    if (messengerCombo) {
+        const selector = messengerCombo.querySelector('.demo-modal-messenger-selector');
+        const selectorIcon = selector.querySelector('.demo-modal-messenger-selector-icon');
+        const dropdown = selector.querySelector('.demo-modal-messenger-dropdown');
+        const options = dropdown.querySelectorAll('.demo-modal-messenger-dropdown-option');
+        const inputField = messengerCombo.querySelector('.demo-modal-messenger-input-field');
+        const hiddenInput = messengerCombo.querySelector('input[name="messenger_type"]');
 
         // Toggle Dropdown
-        trigger.addEventListener('click', (e) => {
-            e.stopPropagation(); // Prevent closing immediately
-            customSelect.classList.toggle('open');
+        selector.addEventListener('click', (e) => {
+            e.stopPropagation();
+            selector.classList.toggle('open');
         });
 
         // Select Option
@@ -324,25 +325,38 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // Get data
                 const value = option.getAttribute('data-value');
-                const text = option.textContent.trim();
-                const iconHtml = option.querySelector('.messenger-icon').innerHTML;
+                const placeholder = option.getAttribute('data-placeholder');
+                const iconSvg = option.querySelector('svg').outerHTML;
 
-                // Update Trigger
-                triggerText.textContent = text;
-                triggerIconBox.innerHTML = iconHtml;
+                // Update icon in selector
+                selectorIcon.innerHTML = iconSvg;
+                selectorIcon.setAttribute('data-messenger', value);
 
-                // Update Logic
+                // Update input placeholder
+                inputField.setAttribute('placeholder', placeholder);
+                inputField.setAttribute('data-messenger', value);
+
+                // Update hidden input
+                if (hiddenInput) {
+                    hiddenInput.value = value;
+                }
+
+                // Update selected state
                 options.forEach(opt => opt.classList.remove('selected'));
                 option.classList.add('selected');
 
-                customSelect.classList.remove('open');
+                // Close dropdown
+                selector.classList.remove('open');
+
+                // Focus input for convenience
+                inputField.focus();
             });
         });
 
         // Close Dropdown when clicking outside
         document.addEventListener('click', (e) => {
-            if (!customSelect.contains(e.target)) {
-                customSelect.classList.remove('open');
+            if (!selector.contains(e.target)) {
+                selector.classList.remove('open');
             }
         });
     }

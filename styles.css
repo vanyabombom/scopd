@@ -4241,6 +4241,7 @@ body {
     backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.5);
     padding: 30px;
+    padding-bottom: 0px;
     border-radius: 20px;
     height: auto;
     min-height: 200px;
@@ -4256,7 +4257,6 @@ body {
 }
 
 .journey-text {
-    font-size: 14px;
     color: rgba(18, 14, 12, 1);
     line-height: 1.4;
 }
@@ -4428,7 +4428,7 @@ body {
 
 .why-choose-cta-content h3 {
     font-family: 'Inter', sans-serif;
-    font-size: 32px;
+    font-size: 48px;
     font-weight: 900;
     margin: 0;
     text-transform: uppercase;
@@ -4436,9 +4436,7 @@ body {
 }
 
 .why-choose-cta-content p {
-    font-size: 14px;
     line-height: 1.5;
-    color: #ccc;
     flex: 1;
 }
 

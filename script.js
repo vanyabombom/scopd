@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
         mainItems.forEach(item => item.classList.remove('active'));
     };
 
-    hideAllMenus(); 
+    hideAllMenus();
 
     const moveSubmenuTo = (item) => {
         if (!subMenuContainer) return;
@@ -113,21 +113,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    window.addEventListener('scroll', () => {
-        const scrollY = window.scrollY;
-        const threshold = 50;
-        if (scrollY > threshold) {
-            document.body.classList.add('scrolled');
-        } else {
-            document.body.classList.remove('scrolled');
-        }
-    });
+
 
     const cards = document.querySelectorAll('.glass-card');
 
     cards.forEach(card => {
         const btn = card.querySelector('.toggle-btn');
-        if (!btn) return; 
+        if (!btn) return;
 
         const arrow = card.querySelector('.arrow-icon');
         const content = card.querySelector('.card-content');
@@ -154,7 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         btn.addEventListener('click', (e) => {
-            e.stopPropagation(); 
+            e.stopPropagation();
             triggerFlash();
 
             if (!isOpen) {
@@ -218,7 +210,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const initSlider = (gridSelector) => {
         const grids = document.querySelectorAll(gridSelector);
         grids.forEach(grid => {
-            if (window.innerWidth <= 425) { 
+            if (window.innerWidth <= 425) {
             }
         });
     };
@@ -248,19 +240,109 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        
+
         scrollTopBtn.addEventListener('click', (e) => {
-            e.preventDefault(); 
-            
-            
+            e.preventDefault();
+
+
             if (typeof lenis !== 'undefined') {
-                lenis.scrollTo(0); 
+                lenis.scrollTo(0);
             } else {
-                
+
                 window.scrollTo({
                     top: 0,
                     behavior: 'smooth'
                 });
+            }
+        });
+    }
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    // --- Modal Logic ---
+    const modal = document.getElementById('demoModal');
+    const closeBtn = document.querySelector('.modal-close');
+    const requestBtns = document.querySelectorAll('.request-demo-overlay, .demo-cta-btn');
+    const body = document.body;
+
+    if (modal) {
+        // Open Modal
+        requestBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                modal.classList.add('active');
+                body.style.overflow = 'hidden'; // Prevent background scrolling
+            });
+        });
+
+        // Close Modal Function
+        const closeModal = () => {
+            modal.classList.remove('active');
+            body.style.overflow = '';
+        };
+
+        // Close on 'Close' button click
+        if (closeBtn) {
+            closeBtn.addEventListener('click', closeModal);
+        }
+
+        // Close on outside click
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        // Close on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.classList.contains('active')) {
+                closeModal();
+            }
+        });
+    }
+
+    // --- Custom Select Dropdown Logic ---
+    const customSelectWrapper = document.querySelector('.custom-select-wrapper');
+
+    if (customSelectWrapper) {
+        const customSelect = customSelectWrapper.querySelector('.custom-select');
+        const trigger = customSelect.querySelector('.custom-select-trigger');
+        const options = customSelect.querySelectorAll('.custom-option');
+        const triggerText = trigger.querySelector('.messenger-text');
+        const triggerIconBox = trigger.querySelector('.messenger-icon');
+
+        // Toggle Dropdown
+        trigger.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevent closing immediately
+            customSelect.classList.toggle('open');
+        });
+
+        // Select Option
+        options.forEach(option => {
+            option.addEventListener('click', (e) => {
+                e.stopPropagation();
+
+                // Get data
+                const value = option.getAttribute('data-value');
+                const text = option.textContent.trim();
+                const iconHtml = option.querySelector('.messenger-icon').innerHTML;
+
+                // Update Trigger
+                triggerText.textContent = text;
+                triggerIconBox.innerHTML = iconHtml;
+
+                // Update Logic
+                options.forEach(opt => opt.classList.remove('selected'));
+                option.classList.add('selected');
+
+                customSelect.classList.remove('open');
+            });
+        });
+
+        // Close Dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!customSelect.contains(e.target)) {
+                customSelect.classList.remove('open');
             }
         });
     }

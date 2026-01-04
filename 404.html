@@ -42,7 +42,6 @@
                             stroke-linejoin="round" />
                     </svg></div>
                 <div class="nav-item simple">Partners</div>
-                <div class="nav-item simple">Request Demo</div>
             </nav>
 
             <div class="submenu-container">
@@ -51,8 +50,7 @@
                     <div class="nav-item icon-item"><span class="icon">❶</span> Use Cases</div>
                 </div>
                 <div id="resources" class="pill-nav sub-nav glass-effect">
-                    <a href="calculator.html" class="nav-item icon-item"
-                        style="text-decoration: none; color: inherit;">
+                    <a href="calculator.html" class="nav-item icon-item" style="text-decoration: none; color: inherit;">
                         <span class="icon">❶</span> Calculator
                     </a>
                     <div class="nav-item icon-item"><span class="icon">❶</span> Help & Support</div>
@@ -202,42 +200,41 @@
 
                 <div class="menu-footer-links">
                     <a href="#">Partners</a>
-                    <a href="#">Request Demo</a>
                 </div>
             </div>
-    </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const menuToggle = document.querySelector('.menu-toggle');
-            const sideMenuOverlay = document.querySelector('.side-menu-overlay');
-            const closeMenuBtn = document.querySelector('.close-menu-btn');
+        </div>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const menuToggle = document.querySelector('.menu-toggle');
+                const sideMenuOverlay = document.querySelector('.side-menu-overlay');
+                const closeMenuBtn = document.querySelector('.close-menu-btn');
 
-            if (menuToggle && sideMenuOverlay) {
-                menuToggle.addEventListener('click', () => {
-                    sideMenuOverlay.classList.add('active');
-                    document.body.style.overflow = 'hidden';
-                });
-            }
-
-
-            if (closeMenuBtn && sideMenuOverlay) {
-                closeMenuBtn.addEventListener('click', () => {
-                    sideMenuOverlay.classList.remove('active');
-                    document.body.style.overflow = '';
-                });
-            }
+                if (menuToggle && sideMenuOverlay) {
+                    menuToggle.addEventListener('click', () => {
+                        sideMenuOverlay.classList.add('active');
+                        document.body.style.overflow = 'hidden';
+                    });
+                }
 
 
-            if (sideMenuOverlay) {
-                sideMenuOverlay.addEventListener('click', (e) => {
-                    if (e.target === sideMenuOverlay) {
+                if (closeMenuBtn && sideMenuOverlay) {
+                    closeMenuBtn.addEventListener('click', () => {
                         sideMenuOverlay.classList.remove('active');
                         document.body.style.overflow = '';
-                    }
-                });
-            }
-        });
-    </script>
+                    });
+                }
+
+
+                if (sideMenuOverlay) {
+                    sideMenuOverlay.addEventListener('click', (e) => {
+                        if (e.target === sideMenuOverlay) {
+                            sideMenuOverlay.classList.remove('active');
+                            document.body.style.overflow = '';
+                        }
+                    });
+                }
+            });
+        </script>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>

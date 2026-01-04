@@ -82,36 +82,75 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    mainItems.forEach(item => {
-        if (item.classList.contains('simple')) {
+    const setupNavHover = (navElement) => {
+        if (!navElement) return;
+        const navBackground = navElement.querySelector('.nav-background');
+        const items = navElement.querySelectorAll('.nav-item');
+
+        const updateNavBackground = (item) => {
+            if (!navBackground || !item) return;
+            navBackground.style.width = `${item.offsetWidth}px`;
+            navBackground.style.left = `${item.offsetLeft}px`;
+            navBackground.style.opacity = '1';
+        };
+
+        const resetNavBackground = () => {
+            if (!navBackground) return;
+            const activeItem = navElement.querySelector('.nav-item.active');
+            if (activeItem) {
+                updateNavBackground(activeItem);
+            } else {
+                navBackground.style.opacity = '0';
+            }
+        };
+
+        // Initialize position for active item
+        setTimeout(resetNavBackground, 100);
+
+        items.forEach(item => {
             item.addEventListener('mouseenter', () => {
-                clearTimeout(hideTimeout);
-                hideAllMenus();
+                updateNavBackground(item);
+                if (navElement.classList.contains('main-nav')) {
+                    if (item.classList.contains('simple')) {
+                        clearTimeout(hideTimeout);
+                        hideAllMenus();
+                    } else {
+                        showMenu(item);
+                    }
+                }
             });
-            return;
+
+            item.addEventListener('mouseleave', () => {
+                if (navElement.classList.contains('main-nav')) {
+                    hideTimeout = setTimeout(() => {
+                        hideAllMenus();
+                        resetNavBackground();
+                    }, 250);
+                } else {
+                    resetNavBackground();
+                }
+            });
+        });
+
+        if (navElement.classList.contains('main-nav') && subMenuContainer) {
+            subMenuContainer.addEventListener('mouseenter', () => {
+                clearTimeout(hideTimeout);
+            });
+            subMenuContainer.addEventListener('mouseleave', () => {
+                hideTimeout = setTimeout(() => {
+                    hideAllMenus();
+                    resetNavBackground();
+                }, 250);
+            });
         }
+    };
 
-        item.addEventListener('mouseenter', () => {
-            showMenu(item);
-        });
+    // Setup hover effect for main nav
+    const mainNav = document.querySelector('.main-nav');
+    setupNavHover(mainNav);
 
-        item.addEventListener('mouseleave', () => {
-            hideTimeout = setTimeout(() => {
-                hideAllMenus();
-            }, 250);
-        });
-    });
-
-    if (subMenuContainer) {
-        subMenuContainer.addEventListener('mouseenter', () => {
-            clearTimeout(hideTimeout);
-        });
-        subMenuContainer.addEventListener('mouseleave', () => {
-            hideTimeout = setTimeout(() => {
-                hideAllMenus();
-            }, 250);
-        });
-    }
+    // Setup hover effect for all sub navs
+    document.querySelectorAll('.sub-nav').forEach(sub => setupNavHover(sub));
 
 
 

@@ -2182,6 +2182,22 @@ body.scrolled .menu-toggle::after {
     color: #fff;
 }
 
+.footer-col a.demo-cta-btn {
+    display: block;
+    background: transparent;
+    padding: 0;
+    margin-bottom: 14px;
+    border-radius: 0;
+    color: #9ca3af;
+    font-size: 15px;
+    font-weight: 400;
+}
+
+.footer-col a.demo-cta-btn:hover {
+    color: #fff;
+    background: transparent;
+}
+
 .footer-subscribe {
     max-width: 400px;
     width: 100%;

@@ -104,7 +104,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         };
 
-        // Initialize position for active item
         setTimeout(resetNavBackground, 100);
 
         items.forEach(item => {
@@ -145,11 +144,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // Setup hover effect for main nav
     const mainNav = document.querySelector('.main-nav');
     setupNavHover(mainNav);
 
-    // Setup hover effect for all sub navs
     document.querySelectorAll('.sub-nav').forEach(sub => setupNavHover(sub));
 
 
@@ -266,6 +263,52 @@ document.addEventListener('DOMContentLoaded', () => {
     setupMobileSliders();
     window.addEventListener('resize', setupMobileSliders);
 
+    const setupPagination = () => {
+        const paginationPill = document.querySelector('.pagination-pill');
+        if (!paginationPill) return;
+
+        const navBackground = paginationPill.querySelector('.nav-background');
+        const items = paginationPill.querySelectorAll('.page-numbers');
+
+        const updateNavBackground = (item) => {
+            if (!navBackground || !item) return;
+            navBackground.style.width = `${item.offsetWidth}px`;
+            navBackground.style.left = `${item.offsetLeft}px`;
+            navBackground.style.opacity = '1';
+
+            // Only the item under the background should be dark
+            items.forEach(i => {
+                i.style.color = (i === item) ? 'rgba(18, 14, 12, 1)' : '#fff';
+            });
+        };
+
+        const resetNavBackground = () => {
+            const activeItem = paginationPill.querySelector('.page-numbers.active');
+            if (activeItem) {
+                updateNavBackground(activeItem);
+            }
+        };
+
+        items.forEach(item => {
+            item.addEventListener('mouseenter', () => updateNavBackground(item));
+            item.addEventListener('mouseleave', resetNavBackground);
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                items.forEach(i => i.classList.remove('active'));
+                item.classList.add('active');
+                updateNavBackground(item);
+            });
+        });
+
+        // Initialize position
+        setTimeout(resetNavBackground, 100);
+
+        // Handle window resize
+        window.addEventListener('resize', resetNavBackground);
+    };
+
+    setupPagination();
+
 });
 document.addEventListener('DOMContentLoaded', () => {
     const scrollTopBtn = document.querySelector('.scroll-top-btn');
@@ -298,7 +341,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-    // --- Modal Logic ---
     const modal = document.getElementById('demoModal');
     const closeBtn = document.querySelector('.demo-modal-close');
     const requestBtns = document.querySelectorAll('.request-demo-overlay, .demo-cta-btn');
@@ -310,29 +352,25 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.addEventListener('click', (e) => {
                 e.preventDefault();
                 modal.classList.add('active');
-                body.style.overflow = 'hidden'; // Prevent background scrolling
+                body.style.overflow = 'hidden';
             });
         });
 
-        // Close Modal Function
         const closeModal = () => {
             modal.classList.remove('active');
             body.style.overflow = '';
         };
 
-        // Close on 'Close' button click
         if (closeBtn) {
             closeBtn.addEventListener('click', closeModal);
         }
 
-        // Close on outside click
         modal.addEventListener('click', (e) => {
             if (e.target === modal) {
                 closeModal();
             }
         });
 
-        // Close on Escape key
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && modal.classList.contains('active')) {
                 closeModal();
@@ -340,7 +378,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- Combined Messenger Input Logic ---
     const messengerCombo = document.querySelector('.demo-modal-messenger-combo');
 
     if (messengerCombo) {
@@ -351,48 +388,36 @@ document.addEventListener('DOMContentLoaded', () => {
         const inputField = messengerCombo.querySelector('.demo-modal-messenger-input-field');
         const hiddenInput = messengerCombo.querySelector('input[name="messenger_type"]');
 
-        // Toggle Dropdown
         selector.addEventListener('click', (e) => {
             e.stopPropagation();
             selector.classList.toggle('open');
         });
 
-        // Select Option
         options.forEach(option => {
             option.addEventListener('click', (e) => {
                 e.stopPropagation();
 
-                // Get data
                 const value = option.getAttribute('data-value');
                 const placeholder = option.getAttribute('data-placeholder');
                 const iconSvg = option.querySelector('svg').outerHTML;
 
-                // Update icon in selector
                 selectorIcon.innerHTML = iconSvg;
                 selectorIcon.setAttribute('data-messenger', value);
 
-                // Update input placeholder
                 inputField.setAttribute('placeholder', placeholder);
                 inputField.setAttribute('data-messenger', value);
-
-                // Update hidden input
                 if (hiddenInput) {
                     hiddenInput.value = value;
                 }
 
-                // Update selected state
                 options.forEach(opt => opt.classList.remove('selected'));
                 option.classList.add('selected');
 
-                // Close dropdown
                 selector.classList.remove('open');
-
-                // Focus input for convenience
                 inputField.focus();
             });
         });
 
-        // Close Dropdown when clicking outside
         document.addEventListener('click', (e) => {
             if (!selector.contains(e.target)) {
                 selector.classList.remove('open');

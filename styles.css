@@ -1953,10 +1953,10 @@ body.scrolled .menu-toggle::after {
     grid-column: 2;
     width: 100%;
     text-align: center;
-    background: #1d1d1d;
-    color: #fff;
+    background: #fff;
+    color: rgba(35, 30, 32, 1);
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 700;
     padding: 14px 0;
     border-radius: 9999px;
     text-decoration: none;

@@ -347,7 +347,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const body = document.body;
 
     if (modal) {
-        // Open Modal
         requestBtns.forEach(btn => {
             btn.addEventListener('click', (e) => {
                 e.preventDefault();

@@ -1252,7 +1252,9 @@ body.scrolled .menu-toggle::after {
 }
 
 .card-content {
+    display: none;
     opacity: 0;
+    visibility: hidden;
     margin-top: 15px;
     transform: translateY(10px);
     z-index: 10;
@@ -1280,7 +1282,9 @@ body.scrolled .menu-toggle::after {
 }
 
 .static-card .card-content {
+    display: block;
     opacity: 1;
+    visibility: visible;
     transform: translateY(0);
 }
 

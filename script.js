@@ -186,13 +186,29 @@ document.addEventListener('DOMContentLoaded', () => {
             triggerFlash();
 
             if (!isOpen) {
+                // Ensure visibility for expansion
+                gsap.set(content, { display: 'block', visibility: 'visible' });
                 gsap.to(card, { height: "auto", duration: 0.6, ease: "power3.out" });
                 gsap.to(content, { opacity: 1, y: 0, duration: 0.4, delay: 0.1 });
                 gsap.to(arrow, { rotation: 225, duration: 0.3 });
                 btn.style.background = "rgba(255,255,255,0.3)";
             } else {
-                gsap.to(card, { height: 190, duration: 0.5, ease: "power3.inOut" });
-                gsap.to(content, { opacity: 0, y: 10, duration: 0.3 });
+                // To get the collapsed height, we temporarily hide content
+                gsap.set(content, { display: 'none', visibility: 'hidden' });
+                const collapsedHeight = card.offsetHeight;
+                gsap.set(content, { display: 'block', visibility: 'visible' });
+
+                gsap.to(card, { height: collapsedHeight, duration: 0.5, ease: "power3.inOut" });
+                gsap.to(content, {
+                    opacity: 0,
+                    y: 10,
+                    duration: 0.3,
+                    onComplete: () => {
+                        gsap.set(content, { display: 'none', visibility: 'hidden' });
+                        // Optional: reset card height to auto if it was auto in CSS
+                        // but it's safer to keep it at the measured height to avoid jumps
+                    }
+                });
                 gsap.to(arrow, { rotation: 45, duration: 0.3 });
                 btn.style.background = "rgba(255,255,255,0.1)";
             }

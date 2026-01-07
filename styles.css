@@ -3702,7 +3702,7 @@ body {
     }
 
     .mission-section {
-        padding: 60px 20px;
+        padding: 35px 20px 0px 20px;
     }
 
     .mission-title {
@@ -4025,6 +4025,10 @@ body {
         font-size: 13px;
         gap: 10px;
         margin-bottom: 10px;
+    }
+
+    .why-choose-cta-content h3 {
+        font-size: 32px;
     }
 
     .check-icon {

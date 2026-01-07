@@ -836,9 +836,6 @@ body.scrolled .logo-link {
     align-items: center;
     justify-content: center;
     border-radius: 9999px;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
     transition: all 0.3s ease;
     position: relative;
 }
@@ -915,7 +912,6 @@ body.scrolled .nav-wrapper {
     align-items: center;
     justify-content: center;
     font-size: 15px;
-    mix-blend-mode: difference;
 }
 
 body.scrolled .menu-toggle {
@@ -948,6 +944,21 @@ body.scrolled .menu-toggle::after {
         0 16px 32px rgba(0, 0, 0, 0.12);
     backdrop-filter: blur(40px) saturate(200%);
     -webkit-backdrop-filter: blur(40px) saturate(200%);
+}
+
+.pill-nav.glass-effect {
+    background: rgba(255, 255, 255, 0.45);
+    backdrop-filter: blur(25px) saturate(120%);
+    -webkit-backdrop-filter: blur(25px) saturate(120%);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.1),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+}
+
+.pill-nav.glass-effect::before,
+.pill-nav.glass-effect::after {
+    display: none;
 }
 
 .submenu-container:has(.active-sub),
@@ -1008,7 +1019,7 @@ body.scrolled .menu-toggle::after {
 
 .pill-nav {
     border-radius: 9999px;
-    padding: 6px;
+    padding: 8px;
     display: inline-flex;
     align-items: center;
     gap: 5px;
@@ -1175,7 +1186,7 @@ body.scrolled .menu-toggle::after {
     font-size: 18px;
     max-width: 100%;
     margin: 0 auto;
-    white-space: nowrap;
+    white-space: wrap;
     letter-spacing: 0.02em;
 }
 
@@ -1460,6 +1471,24 @@ body.scrolled .menu-toggle::after {
 
 .menu-footer-links a:hover {
     color: #fff;
+}
+
+.menu-footer-links a.demo-cta-btn {
+    display: block;
+    background: none;
+    color: #9ca3af;
+    font-size: 16px;
+    padding: 0;
+    border-radius: 0;
+    margin-bottom: 8px;
+}
+
+.menu-footer-links a.demo-cta-btn:hover {
+    color: #fff;
+}
+
+.menu-footer-links .demo-arrow {
+    display: none;
 }
 
 .demo-cta-section {
@@ -3428,6 +3457,60 @@ body {
     }
 }
 
+@media (min-width: 426px) and (max-width: 768px) {
+
+    .logo-link {
+        top: 20px;
+        left: 20px;
+    }
+
+    .logo-pill {
+        padding: 0 !important;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+    }
+
+    .logo-pill img {
+        height: 18px;
+    }
+
+    .menu-toggle {
+        top: 20px;
+        right: 20px;
+        width: 48px;
+        height: 48px;
+        padding: 0;
+        border-radius: 50%;
+        font-size: 0;
+    }
+
+    .menu-toggle::after {
+        width: 16px;
+        height: 2px;
+        box-shadow: 0 -5px 0 #fff, 0 5px 0 #fff;
+    }
+
+    .logo-big {
+        opacity: 0;
+    }
+
+    .logo-small {
+        opacity: 1;
+    }
+
+    body.scrolled .logo-pill {
+        padding: 0 !important;
+        width: 48px;
+        height: 48px;
+    }
+
+    body.scrolled .menu-toggle {
+        width: 48px;
+        height: 48px;
+    }
+}
+
 @media (max-width: 768px) {
 
     .logo-pill {
@@ -3519,11 +3602,11 @@ body {
     }
 
     .all-cases-btn {
-        position: relative;
-        bottom: auto;
-        right: auto;
-        margin-top: 20px;
+        bottom: 0px;
+        right: -2px;
+        margin-top: -85px;
         width: fit-content;
+        padding: 4px 4px 4px 12px;
     }
 
     .menu-toggle {
@@ -3657,8 +3740,13 @@ body {
         padding: 60px 20px;
     }
 
+    .demo-cta-container {
+        padding: 0 20px;
+    }
+
     .demo-cta-title {
         font-size: 24px;
+        margin-bottom: 20px;
     }
 
     .demo-cta-content h3 {
@@ -3667,6 +3755,20 @@ body {
 
     .demo-cta-content p {
         font-size: 15px;
+        line-height: 1.6;
+        margin-bottom: 20px;
+    }
+
+    .demo-cta-banner {
+        padding: 40px 20px;
+        flex-direction: column;
+        gap: 24px;
+        text-align: center;
+    }
+
+    .demo-cta-banner h3 {
+        font-size: 28px;
+        line-height: 1.2;
     }
 
     .business-section {
@@ -3737,12 +3839,30 @@ body {
         font-size: 28px;
     }
 
+
+
+    .contact-title {
+        font-size: 32px;
+        margin-bottom: 40px;
+    }
+
     .contact-content-grid {
         grid-template-columns: 1fr;
+        gap: 40px;
     }
 
     .contact-info {
-        margin-bottom: 30px;
+        margin-bottom: 0;
+    }
+
+    .contact-form {
+        max-width: 100%;
+        margin: 0 auto;
+        padding-right: 30px;
+    }
+
+    .form-group {
+        width: 100%;
     }
 
     .calculator-header {
@@ -3902,6 +4022,10 @@ body {
         width: 100%;
     }
 
+    .why-choose-cta-content h3 {
+        font-size: 28px;
+    }
+
     .footer-legal-row {
         gap: 15px;
         flex-direction: column;
@@ -4047,9 +4171,10 @@ body {
     }
 
     .logo-pill {
-        width: 44px;
-        height: 44px;
         padding: 0 !important;
+        width: 54px;
+        height: 54px;
+        border-radius: 50%;
     }
 
     .logo-pill img {
@@ -4059,8 +4184,8 @@ body {
     .menu-toggle {
         top: 12px;
         right: 12px;
-        width: 44px;
-        height: 44px;
+        width: 54px;
+        height: 54px;
         padding: 0;
         border-radius: 50%;
         font-size: 0;

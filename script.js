@@ -292,9 +292,12 @@ document.addEventListener('DOMContentLoaded', () => {
             navBackground.style.left = `${item.offsetLeft}px`;
             navBackground.style.opacity = '1';
 
-            // Only the item under the background should be dark
             items.forEach(i => {
-                i.style.color = (i === item) ? 'rgba(18, 14, 12, 1)' : '#fff';
+                if (i === item) {
+                    i.style.color = 'rgba(18, 14, 12, 1)';
+                } else {
+                    i.style.color = '#fff';
+                }
             });
         };
 
@@ -312,7 +315,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 e.preventDefault();
                 items.forEach(i => i.classList.remove('active'));
                 item.classList.add('active');
+
+                // Update implementation to ensure visual state sync
                 updateNavBackground(item);
+
+                // Double check in next frame to prevent race conditions
+                requestAnimationFrame(() => {
+                    updateNavBackground(item);
+                });
             });
         });
 

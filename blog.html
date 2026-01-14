@@ -10,305 +10,6 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
     <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
-    <style>
-        /* Embedded Blog Styles */
-        .blog-header-section {
-            min-height: auto;
-            padding-bottom: 80px;
-            flex-direction: column;
-            justify-content: flex-start;
-            background: transparent;
-            background-image:
-                radial-gradient(circle at 10% 20%, rgba(252, 241, 132, 1) 0%, rgba(250, 170, 120, 0) 50%),
-                radial-gradient(circle at 90% 80%, rgba(252, 241, 132, 0.8) 0%, rgba(250, 170, 120, 0) 45%),
-                radial-gradient(circle at 50% 60%, rgba(255, 160, 100, 0.4) 0%, transparent 55%);
-        }
-
-        .blog-header-section .header-title-container {
-            margin-top: 150px;
-            text-align: left;
-            width: 100%;
-            max-width: 1200px;
-            margin-left: auto;
-            margin-right: auto;
-            padding: 0 20px;
-        }
-
-        .blog-header-section h1 {
-            font-family: 'Inter', sans-serif;
-            font-size: 80px;
-            font-weight: 900;
-            color: rgba(35, 30, 32, 1);
-            margin: 0;
-            line-height: 1;
-            text-transform: uppercase;
-            padding-bottom: 50px;
-        }
-
-        .blog-main-section {
-            background-color: #231E20;
-            padding: 80px 0;
-            color: #fff;
-            border-top-left-radius: 40px;
-            border-top-right-radius: 40px;
-            margin-top: -40px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .blog-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .blog-filters-header {
-            margin-bottom: 60px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .blog-subtitle {
-            font-family: 'Inter', sans-serif;
-            font-size: 42px;
-            font-weight: 900;
-            margin: 0 0 40px 0;
-            text-transform: uppercase;
-            max-width: 900px;
-            line-height: 1.1;
-            color: #fff;
-            text-align: center;
-        }
-
-        .blog-filters-scroll-wrapper {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-        }
-
-        .blog-filters-scroll-wrapper::-webkit-scrollbar {
-            display: none;
-        }
-
-        .blog-filters {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-            width: 100%;
-            max-width: 1000px;
-            justify-content: center;
-        }
-
-        .filter-btn {
-            background: #fff;
-            color: #231E20;
-            border: none;
-            padding: 12px 28px;
-            border-radius: 9999px;
-            font-family: 'Inter', sans-serif;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            white-space: nowrap;
-        }
-
-        .filter-btn:hover {
-            transform: translateY(-2px);
-            /* Optional: slight hover effect, but keeping it white as per general instruction to make it "like neighbors" which are white */
-        }
-
-        .filter-btn.active {
-            /* Explicitly white as requested for the 'peach button' */
-            background: #fff;
-            color: #231E20;
-        }
-
-        .blog-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-            margin-bottom: 80px;
-        }
-
-        .blog-card {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            padding: 30px;
-            background: rgba(40, 36, 38, 0.85);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border: 1px solid rgba(80, 75, 77, 0.4);
-            border-radius: 16px;
-            transition: transform 0.3s ease, border-color 0.3s ease;
-            /* Match transition */
-            height: 100%;
-            box-sizing: border-box;
-            /* Ensure padding doesn't overflow width */
-        }
-
-        .blog-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(250, 180, 130, 0.5);
-            /* Add hover border effect from index styles comment or similar feel */
-        }
-
-        .blog-card-content {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            flex-grow: 1;
-        }
-
-        .blog-card-category {
-            font-size: 12px;
-            color: rgba(255, 255, 255, 0.6);
-            text-transform: uppercase;
-            font-weight: 600;
-            letter-spacing: 0.05em;
-        }
-
-        .blog-card-title {
-            font-family: 'Inter', sans-serif;
-            font-size: 22px;
-            font-weight: 700;
-            line-height: 1.25;
-            color: #fff;
-            margin: 0;
-        }
-
-        .blog-card-excerpt {
-            font-size: 14px;
-            line-height: 1.6;
-            color: rgba(255, 255, 255, 0.7);
-            margin: 0;
-            display: -webkit-box;
-            -webkit-line-clamp: 4;
-            line-clamp: 4;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-
-        .blog-image-wrapper {
-            position: relative;
-            border-radius: 12px;
-            /* Slightly smaller internal radius */
-            overflow: hidden;
-            aspect-ratio: 16/10;
-            width: 100%;
-            margin-top: auto;
-        }
-
-        .blog-image-wrapper.yellow-bg {
-            background-color: #FCF184;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .blog-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .blog-image-wrapper:hover .blog-image {
-            transform: scale(1.05);
-        }
-
-        .blog-image.contain {
-            object-fit: contain;
-            width: 50%;
-            height: 50%;
-        }
-
-        .blog-arrow-btn {
-            position: absolute;
-            bottom: 12px;
-            right: 12px;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: rgba(25px, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            transition: all 0.3s ease;
-            z-index: 2;
-        }
-
-        .blog-arrow-btn svg {
-            width: 20px;
-            height: 20px;
-        }
-
-        .blog-arrow-btn:hover {
-            background: #fff;
-            color: #000;
-            transform: scale(1.1);
-        }
-
-        /* Pagination overrides for dark theme context */
-        .blog-main-section .pagination-pill {
-            background: #fff;
-        }
-
-        .blog-main-section .pagination-pill .nav-background {
-            background: #231E20;
-        }
-
-        .blog-main-section .page-numbers {
-            color: #000 !important;
-            transition: all 0.3s ease;
-        }
-
-        .blog-main-section .page-numbers:not(.active):hover {
-            color: #fff !important;
-            border-radius: 50%;
-        }
-
-        .blog-main-section .page-numbers.active {
-            color: #fff !important;
-        }
-
-        .blog-main-section .pagination-arrow {
-            color: #231E20;
-        }
-
-
-        @media (max-width: 1024px) {
-            .blog-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .blog-header-section h1 {
-                font-size: 60px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .blog-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .blog-header-section h1 {
-                font-size: 48px;
-            }
-
-            .blog-subtitle {
-                font-size: 28px;
-            }
-
-            .blog-filters-header {
-                margin-bottom: 40px;
-            }
-        }
-    </style>
 </head>
 
 <body class="layout-wrapper gradient-bg"> <!-- Added gradient-bg class assuming it exists or similar -->
@@ -421,7 +122,7 @@
                     </div>
                     <div class="blog-image-wrapper">
                         <img src="img/first-card-pic.jpg" alt="Analysis" class="blog-image">
-                        <a href="#" class="blog-arrow-btn">
+                        <a href="#" class="blog-arrow-btn glass-effect">
                             <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path d="M1 13L13 1M13 1H1M13 1V13" stroke="currentColor" stroke-width="2"
@@ -441,7 +142,7 @@
                     </div>
                     <div class="blog-image-wrapper yellow-bg">
                         <img src="img/second-card-pic.png" alt="SCOPD Today" class="blog-image contain">
-                        <a href="#" class="blog-arrow-btn">
+                        <a href="#" class="blog-arrow-btn glass-effect">
                             <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path d="M1 13L13 1M13 1H1M13 1V13" stroke="currentColor" stroke-width="2"
@@ -462,7 +163,7 @@
                     </div>
                     <div class="blog-image-wrapper">
                         <img src="img/third-card-pic.jpg" alt="Data Defense" class="blog-image">
-                        <a href="#" class="blog-arrow-btn">
+                        <a href="#" class="blog-arrow-btn glass-effect">
                             <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path d="M1 13L13 1M13 1H1M13 1V13" stroke="currentColor" stroke-width="2"
@@ -482,8 +183,8 @@
                             Analysis. Sometimes, it's essential to take a step back...</p>
                     </div>
                     <div class="blog-image-wrapper">
-                        <img src="img/first-card-pic.jpg" alt="Analysis" class="blog-image">
-                        <a href="#" class="blog-arrow-btn">
+                        <img src="img/first-card-pic.jpg" alt="Analysis" class="blog-image glass-effect">
+                        <a href="#" class="blog-arrow-btn glass-effect">
                             <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path d="M1 13L13 1M13 1H1M13 1V13" stroke="currentColor" stroke-width="2"
@@ -503,7 +204,7 @@
                     </div>
                     <div class="blog-image-wrapper yellow-bg">
                         <img src="img/second-card-pic.png" alt="SCOPD Today" class="blog-image contain">
-                        <a href="#" class="blog-arrow-btn">
+                        <a href="#" class="blog-arrow-btn glass-effect">
                             <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path d="M1 13L13 1M13 1H1M13 1V13" stroke="currentColor" stroke-width="2"
@@ -524,7 +225,7 @@
                     </div>
                     <div class="blog-image-wrapper">
                         <img src="img/third-card-pic.jpg" alt="Data Defense" class="blog-image">
-                        <a href="#" class="blog-arrow-btn">
+                        <a href="#" class="blog-arrow-btn glass-effect">
                             <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path d="M1 13L13 1M13 1H1M13 1V13" stroke="currentColor" stroke-width="2"
@@ -544,7 +245,7 @@
                     </div>
                     <div class="blog-image-wrapper">
                         <img src="img/first-card-pic.jpg" alt="Analysis" class="blog-image">
-                        <a href="#" class="blog-arrow-btn">
+                        <a href="#" class="blog-arrow-btn glass-effect">
                             <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path d="M1 13L13 1M13 1H1M13 1V13" stroke="currentColor" stroke-width="2"
@@ -564,7 +265,7 @@
                     </div>
                     <div class="blog-image-wrapper yellow-bg">
                         <img src="img/second-card-pic.png" alt="SCOPD Today" class="blog-image contain">
-                        <a href="#" class="blog-arrow-btn">
+                        <a href="#" class="blog-arrow-btn glass-effect">
                             <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path d="M1 13L13 1M13 1H1M13 1V13" stroke="currentColor" stroke-width="2"
@@ -585,7 +286,7 @@
                     </div>
                     <div class="blog-image-wrapper">
                         <img src="img/third-card-pic.jpg" alt="Data Defense" class="blog-image">
-                        <a href="#" class="blog-arrow-btn">
+                        <a href="#" class="blog-arrow-btn glass-effect">
                             <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path d="M1 13L13 1M13 1H1M13 1V13" stroke="currentColor" stroke-width="2"

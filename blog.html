@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | SCOPD</title>
+    <link rel="icon" href="img/icon.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+    <style>
+        /* Embedded Blog Styles */
+        .blog-header-section {
+            min-height: auto;
+            padding-bottom: 80px;
+            flex-direction: column;
+            justify-content: flex-start;
+            background: transparent;
+            background-image:
+                radial-gradient(circle at 10% 20%, rgba(252, 241, 132, 1) 0%, rgba(250, 170, 120, 0) 50%),
+                radial-gradient(circle at 90% 80%, rgba(252, 241, 132, 0.8) 0%, rgba(250, 170, 120, 0) 45%),
+                radial-gradient(circle at 50% 60%, rgba(255, 160, 100, 0.4) 0%, transparent 55%);
+        }
+
+        .blog-header-section .header-title-container {
+            margin-top: 150px;
+            text-align: left;
+            width: 100%;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0 20px;
+        }
+
+        .blog-header-section h1 {
+            font-family: 'Inter', sans-serif;
+            font-size: 80px;
+            font-weight: 900;
+            color: rgba(35, 30, 32, 1);
+            margin: 0;
+            line-height: 1;
+            text-transform: uppercase;
+            padding-bottom: 50px;
+        }
+
+        .blog-main-section {
+            background-color: #231E20;
+            padding: 80px 0;
+            color: #fff;
+            border-top-left-radius: 40px;
+            border-top-right-radius: 40px;
+            margin-top: -40px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .blog-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .blog-filters-header {
+            margin-bottom: 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .blog-subtitle {
+            font-family: 'Inter', sans-serif;
+            font-size: 42px;
+            font-weight: 900;
+            margin: 0 0 40px 0;
+            text-transform: uppercase;
+            max-width: 900px;
+            line-height: 1.1;
+            color: #fff;
+            text-align: center;
+        }
+
+        .blog-filters-scroll-wrapper {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .blog-filters-scroll-wrapper::-webkit-scrollbar {
+            display: none;
+        }
+
+        .blog-filters {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            width: 100%;
+            max-width: 1000px;
+            justify-content: center;
+        }
+
+        .filter-btn {
+            background: #fff;
+            color: #231E20;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 9999px;
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .filter-btn:hover {
+            transform: translateY(-2px);
+            /* Optional: slight hover effect, but keeping it white as per general instruction to make it "like neighbors" which are white */
+        }
+
+        .filter-btn.active {
+            /* Explicitly white as requested for the 'peach button' */
+            background: #fff;
+            color: #231E20;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+
+        .blog-card {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            padding: 30px;
+            background: rgba(40, 36, 38, 0.85);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(80, 75, 77, 0.4);
+            border-radius: 16px;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            /* Match transition */
+            height: 100%;
+            box-sizing: border-box;
+            /* Ensure padding doesn't overflow width */
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(250, 180, 130, 0.5);
+            /* Add hover border effect from index styles comment or similar feel */
+        }
+
+        .blog-card-content {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            flex-grow: 1;
+        }
+
+        .blog-card-category {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.6);
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .blog-card-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 22px;
+            font-weight: 700;
+            line-height: 1.25;
+            color: #fff;
+            margin: 0;
+        }
+
+        .blog-card-excerpt {
+            font-size: 14px;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.7);
+            margin: 0;
+            display: -webkit-box;
+            -webkit-line-clamp: 4;
+            line-clamp: 4;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .blog-image-wrapper {
+            position: relative;
+            border-radius: 12px;
+            /* Slightly smaller internal radius */
+            overflow: hidden;
+            aspect-ratio: 16/10;
+            width: 100%;
+            margin-top: auto;
+        }
+
+        .blog-image-wrapper.yellow-bg {
+            background-color: #FCF184;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .blog-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .blog-image-wrapper:hover .blog-image {
+            transform: scale(1.05);
+        }
+
+        .blog-image.contain {
+            object-fit: contain;
+            width: 50%;
+            height: 50%;
+        }
+
+        .blog-arrow-btn {
+            position: absolute;
+            bottom: 12px;
+            right: 12px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(25px, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            transition: all 0.3s ease;
+            z-index: 2;
+        }
+
+        .blog-arrow-btn svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .blog-arrow-btn:hover {
+            background: #fff;
+            color: #000;
+            transform: scale(1.1);
+        }
+
+        /* Pagination overrides for dark theme context */
+        .blog-main-section .pagination-pill {
+            background: #fff;
+        }
+
+        .blog-main-section .pagination-pill .nav-background {
+            background: #231E20;
+        }
+
+        .blog-main-section .page-numbers {
+            color: #000 !important;
+            transition: all 0.3s ease;
+        }
+
+        .blog-main-section .page-numbers:not(.active):hover {
+            color: #fff !important;
+            border-radius: 50%;
+        }
+
+        .blog-main-section .page-numbers.active {
+            color: #fff !important;
+        }
+
+        .blog-main-section .pagination-arrow {
+            color: #231E20;
+        }
+
+
+        @media (max-width: 1024px) {
+            .blog-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .blog-header-section h1 {
+                font-size: 60px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .blog-header-section h1 {
+                font-size: 48px;
+            }
+
+            .blog-subtitle {
+                font-size: 28px;
+            }
+
+            .blog-filters-header {
+                margin-bottom: 40px;
+            }
+        }
+    </style>
+</head>
+
+<body class="layout-wrapper gradient-bg"> <!-- Added gradient-bg class assuming it exists or similar -->
+    <section class="hero-section blog-header-section">
+        <a href="index.html" class="logo-link">
+            <div class="pill-nav logo-pill glass-effect">
+                <img src="img/big-logo.png" alt="Logo" class="logo-big">
+                <img src="img/small-logo.png" alt="Logo" class="logo-small">
+            </div>
+        </a>
+
+        <div class="menu-toggle glass-effect">Menu</div>
+
+        <div class="nav-wrapper">
+            <nav class="pill-nav main-nav glass-effect">
+                <div class="nav-background"></div>
+                <div class="nav-item active" data-target="company">Company <svg class="arrow" width="10" height="6"
+                        viewBox="0 0 10 6" fill="none">
+                        <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg></div>
+                <div class="nav-item" data-target="resources">Resources <svg class="arrow" width="10" height="6"
+                        viewBox="0 0 10 6" fill="none">
+                        <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg></div>
+                <div class="nav-item" data-target="contact">Contact us <svg class="arrow" width="10" height="6"
+                        viewBox="0 0 10 6" fill="none">
+                        <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg></div>
+                <div class="nav-item simple">Partners</div>
+            </nav>
+
+            <div class="submenu-container">
+                <div id="company" class="pill-nav sub-nav glass-effect active-sub">
+                    <div class="nav-background"></div>
+                    <a href="about.html" class="nav-item icon-item" style="text-decoration: none; color: inherit;">
+                        <span class="icon">❶</span> About us
+                    </a>
+                    <a href="use-cases-main.html" class="nav-item icon-item"
+                        style="text-decoration: none; color: inherit;">
+                        <span class="icon">❶</span> Use Cases
+                    </a>
+                </div>
+                <div id="resources" class="pill-nav sub-nav glass-effect">
+                    <div class="nav-background"></div>
+                    <a href="calculator.html" class="nav-item icon-item" style="text-decoration: none; color: inherit;">
+                        <span class="icon">❶</span> Calculator
+                    </a>
+                    <a href="help-and-support.html" class="nav-item icon-item"
+                        style="text-decoration: none; color: inherit;">
+                        <span class="icon">❶</span> Help & Support
+                    </a>
+                    <a href="#" class="nav-item icon-item active" style="text-decoration: none; color: inherit;">
+                        <span class="icon">❶</span> Blog
+                    </a>
+                </div>
+                <div id="contact" class="pill-nav sub-nav glass-effect">
+                    <div class="nav-background"></div>
+                    <a href="reach-out.html" class="nav-item icon-item" style="text-decoration: none; color: inherit;">
+                        <span class="icon">❶</span> Reach Out
+                    </a>
+                    <a href="https://calendly.com/kateleo-mail/30min" class="nav-item icon-item"
+                        style="text-decoration: none; color: inherit;" target="_blank">
+                        <span class="icon">❶</span> Schedule a Meeting
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="header-title-container">
+            <h1 data-aos="fade-down" data-aos-offset="0">BLOG</h1>
+        </div>
+    </section>
+
+    <section class="blog-main-section">
+        <div class="blog-container">
+            <div class="blog-filters-header" data-aos="fade-up">
+                <h2 class="blog-subtitle">READ THE LATEST REPORTS AND CASE STUDIES FROM SCOPD</h2>
+
+                <div class="blog-filters-scroll-wrapper">
+                    <div class="blog-filters">
+                        <button class="filter-btn active">View all</button>
+                        <button class="filter-btn">Business Insights</button>
+                        <button class="filter-btn">Data Security</button>
+                        <button class="filter-btn">DLP</button>
+                        <button class="filter-btn">Employee Monitoring</button>
+                        <button class="filter-btn">Insider Risk</button>
+                        <button class="filter-btn">Productivity</button>
+                        <button class="filter-btn">Project Management</button>
+                        <button class="filter-btn">Time Tracking</button>
+                        <button class="filter-btn">UEBA (User Entity Behavior Analytics)</button>
+                        <button class="filter-btn">Workforce Management</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="blog-grid" data-aos="fade-up">
+                <!-- Blog Cards 1-9 (Re-using structure, adding glass-effect to card) -->
+
+                <!-- Card 1 -->
+                <div class="blog-card glass-effect">
+                    <div class="blog-card-content">
+                        <span class="blog-card-category">Business Insights</span>
+                        <h3 class="blog-card-title">From Data To Decision: The Essential Role Of Analysis In Achieving
+                            Goals</h3>
+                        <p class="blog-card-excerpt">Gentle Reminder of the Obvious: The Lifelong Importance of
+                            Analysis. Sometimes, it's essential to take a step back...</p>
+                    </div>
+                    <div class="blog-image-wrapper">
+                        <img src="img/first-card-pic.jpg" alt="Analysis" class="blog-image">
+                        <a href="#" class="blog-arrow-btn">
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1 13L13 1M13 1H1M13 1V13" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="blog-card glass-effect">
+                    <div class="blog-card-content">
+                        <span class="blog-card-category">Business Insights</span>
+                        <h3 class="blog-card-title">Why You Need SCOPD Today?</h3>
+                        <p class="blog-card-excerpt">In today's unpredictable world, being prepared for any situation is
+                            crucial. Whether it's a global pandemic forcing sudden office closures...</p>
+                    </div>
+                    <div class="blog-image-wrapper yellow-bg">
+                        <img src="img/second-card-pic.png" alt="SCOPD Today" class="blog-image contain">
+                        <a href="#" class="blog-arrow-btn">
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1 13L13 1M13 1H1M13 1V13" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="blog-card glass-effect">
+                    <div class="blog-card-content">
+                        <span class="blog-card-category">Business Insights</span>
+                        <h3 class="blog-card-title">Data Defense: SCOPD's Success In Preventing A Transportation
+                            Company's Data Leak</h3>
+                        <p class="blog-card-excerpt">Success Story: Securing a Transportation Company's Data In the
+                            ever-evolving world of cybersecurity, preventing data breaches is crucial. One...</p>
+                    </div>
+                    <div class="blog-image-wrapper">
+                        <img src="img/third-card-pic.jpg" alt="Data Defense" class="blog-image">
+                        <a href="#" class="blog-arrow-btn">
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1 13L13 1M13 1H1M13 1V13" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="blog-card glass-effect">
+                    <div class="blog-card-content">
+                        <span class="blog-card-category">Business Insights</span>
+                        <h3 class="blog-card-title">From Data To Decision: The Essential Role Of Analysis In Achieving
+                            Goals</h3>
+                        <p class="blog-card-excerpt">Gentle Reminder of the Obvious: The Lifelong Importance of
+                            Analysis. Sometimes, it's essential to take a step back...</p>
+                    </div>
+                    <div class="blog-image-wrapper">
+                        <img src="img/first-card-pic.jpg" alt="Analysis" class="blog-image">
+                        <a href="#" class="blog-arrow-btn">
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1 13L13 1M13 1H1M13 1V13" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="blog-card glass-effect">
+                    <div class="blog-card-content">
+                        <span class="blog-card-category">Business Insights</span>
+                        <h3 class="blog-card-title">Why You Need SCOPD Today?</h3>
+                        <p class="blog-card-excerpt">In today's unpredictable world, being prepared for any situation is
+                            crucial. Whether it's a global pandemic forcing sudden office closures...</p>
+                    </div>
+                    <div class="blog-image-wrapper yellow-bg">
+                        <img src="img/second-card-pic.png" alt="SCOPD Today" class="blog-image contain">
+                        <a href="#" class="blog-arrow-btn">
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1 13L13 1M13 1H1M13 1V13" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="blog-card glass-effect">
+                    <div class="blog-card-content">
+                        <span class="blog-card-category">Business Insights</span>
+                        <h3 class="blog-card-title">Data Defense: SCOPD's Success In Preventing A Transportation
+                            Company's Data Leak</h3>
+                        <p class="blog-card-excerpt">Success Story: Securing a Transportation Company's Data In the
+                            ever-evolving world of cybersecurity, preventing data breaches is crucial. One...</p>
+                    </div>
+                    <div class="blog-image-wrapper">
+                        <img src="img/third-card-pic.jpg" alt="Data Defense" class="blog-image">
+                        <a href="#" class="blog-arrow-btn">
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1 13L13 1M13 1H1M13 1V13" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <!-- Card 7 -->
+                <div class="blog-card glass-effect">
+                    <div class="blog-card-content">
+                        <span class="blog-card-category">Business Insights</span>
+                        <h3 class="blog-card-title">From Data To Decision: The Essential Role Of Analysis In Achieving
+                            Goals</h3>
+                        <p class="blog-card-excerpt">Gentle Reminder of the Obvious: The Lifelong Importance of
+                            Analysis. Sometimes, it's essential to take a step back...</p>
+                    </div>
+                    <div class="blog-image-wrapper">
+                        <img src="img/first-card-pic.jpg" alt="Analysis" class="blog-image">
+                        <a href="#" class="blog-arrow-btn">
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1 13L13 1M13 1H1M13 1V13" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card 8 -->
+                <div class="blog-card glass-effect">
+                    <div class="blog-card-content">
+                        <span class="blog-card-category">Business Insights</span>
+                        <h3 class="blog-card-title">Why You Need SCOPD Today?</h3>
+                        <p class="blog-card-excerpt">In today's unpredictable world, being prepared for any situation is
+                            crucial. Whether it's a global pandemic forcing sudden office closures...</p>
+                    </div>
+                    <div class="blog-image-wrapper yellow-bg">
+                        <img src="img/second-card-pic.png" alt="SCOPD Today" class="blog-image contain">
+                        <a href="#" class="blog-arrow-btn">
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1 13L13 1M13 1H1M13 1V13" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card 9 -->
+                <div class="blog-card glass-effect">
+                    <div class="blog-card-content">
+                        <span class="blog-card-category">Business Insights</span>
+                        <h3 class="blog-card-title">Data Defense: SCOPD's Success In Preventing A Transportation
+                            Company's Data Leak</h3>
+                        <p class="blog-card-excerpt">Success Story: Securing a Transportation Company's Data In the
+                            ever-evolving world of cybersecurity, preventing data breaches is crucial. One...</p>
+                    </div>
+                    <div class="blog-image-wrapper">
+                        <img src="img/third-card-pic.jpg" alt="Data Defense" class="blog-image">
+                        <a href="#" class="blog-arrow-btn">
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1 13L13 1M13 1H1M13 1V13" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination" data-aos="fade-up">
+                <div class="pagination-pill">
+                    <div class="nav-background"></div>
+                    <a href="#" class="page-numbers active">1</a>
+                    <a href="#" class="page-numbers">2</a>
+                    <a href="#" class="page-numbers">3</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="contact-container" data-aos="fade-up">
+            <h2 class="contact-title">HAVE QUESTIONS?<br>GET IN TOUCH!</h2>
+
+            <div class="contact-content-grid">
+
+                <div class="contact-info">
+                    <div class="info-group">
+                        <label>Office</label>
+                        <p>0711, Georgia, Tbilisi, Saburtalo District, Givi Kartozia Street, No. 8 Building No. 5, Flat
+                            No. 92</p>
+                    </div>
+
+                    <div class="info-group">
+                        <label>Phone</label>
+                        <p>International & Premium Product sales:<br>
+                            <a href="tel:+995598888826">+995598888826</a>
+                        </p>
+                        <p>Please contact us via Business WhatsApp<br>
+                            <a href="https://wa.me/995598888826" class="wa-link" target="_blank">WA Business</a>
+                        </p>
+                    </div>
+
+                    <div class="info-group">
+                        <label>Email</label>
+                        <p>General questions<br>
+                            <a href="mailto:info@scopd.net">info@scopd.net</a>
+                        </p>
+                    </div>
+                </div>
+
+
+                <form class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" placeholder="">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" placeholder="">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Enter Your Message</label>
+                        <textarea id="message" name="message" rows="4"></textarea>
+                        <span class="char-count">0/100</span>
+                    </div>
+
+                    <div class="form-checkbox">
+                        <input type="checkbox" id="terms" name="terms" required>
+                        <label for="terms">I accept the Terms</label>
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+                        Submit
+                        <span class="submit-arrow">
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1 13L13 1M13 1H1M13 1V13" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <div class="footer-wrapper">
+        <footer class="main-footer">
+            <div class="footer-container" data-aos="fade-up">
+
+                <div class="footer-top-section">
+
+                    <div class="footer-nav-links">
+                        <div class="footer-col">
+                            <h4>Company</h4>
+                            <a href="about.html">About Us</a>
+                            <a href="use-cases-main.html">Use Cases</a>
+                        </div>
+                        <div class="footer-col">
+                            <h4>Resources</h4>
+                            <a href="calculator.html">Calculator</a>
+                            <a href="help-and-support.html">Help & Support</a>
+                            <a href="#">Blog</a>
+                        </div>
+                        <div class="footer-col">
+                            <h4>Contact Us</h4>
+                            <a href="reach-out.html">Reach Out</a>
+                            <a href="https://calendly.com/kateleo-mail/30min" target="_blank">Schedule a Meeting</a>
+                        </div>
+                        <div class="footer-col">
+                            <h4>Quick Links</h4>
+                            <a href="#">Partners</a>
+                            <a href="#">Plans</a>
+                            <a href="#" class="demo-cta-btn">Request Demo</a>
+                        </div>
+                        <div class="footer-col">
+                            <h4>Socials</h4>
+                            <a href="https://ge.linkedin.com/company/scopd-llc" target="_blank">Linkedin</a>
+                            <a href="https://www.facebook.com/profile.php?id=61565695336082"
+                                target="_blank">Facebook</a>
+                            <a href="https://wa.me/995598888826" target="_blank">WhatsApp</a>
+                        </div>
+                    </div>
+
+                    <div class="footer-subscribe">
+                        <h4>Subscribe to newsletter</h4>
+                        <div class="subscribe-form">
+                            <input type="email" placeholder="Your email address">
+                            <button type="button">Get started</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-bottom-section">
+
+                    <div class="footer-brand-left">
+                        <div class="footer-logo-text">
+                            <img src="img/big-white-logo.png" alt="scopd" class="scopd-text-logo">
+                        </div>
+                        <p class="footer-tagline">Objective data is the basis of an effective business</p>
+
+                        <div class="footer-legal-row">
+                            <span class="copyright">©scopd, Inc. 2026</span>
+                            <a href="#">Term of Services</a>
+                            <a href="#">Privacy Policy</a>
+                            <a href="#">Cookies Settings</a>
+                        </div>
+                    </div>
+
+                    <div class="footer-extras-right">
+                        <div class="certs-wrapper">
+                            <img src="img/certificates.jpg" alt="ISO Certificates" class="certs-img">
+                        </div>
+
+                        <a href="#" class="scroll-top-btn glass-effect" aria-label="Scroll to top">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 19V5M12 5L5 12M12 5L19 12" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Side Menu -->
+    <div class="side-menu-overlay">
+        <div class="side-menu-content">
+            <button class="close-menu-btn">Close</button>
+            <div class="menu-section">
+                <a href="index.html"
+                    style="font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 700; color: #fff; margin-bottom: 16px; text-decoration: none; display: block;">Home</a>
+            </div>
+            <hr class="menu-divider">
+
+            <div class="menu-sections">
+                <div class="menu-section">
+                    <h3>Company</h3>
+                    <a href="about.html">About Us</a>
+                    <a href="use-cases-main.html">Use Cases</a>
+                </div>
+
+                <div class="menu-section">
+                    <h3>Resources</h3>
+                    <a href="calculator.html">Calculator</a>
+                    <a href="help-and-support.html">Help & Support</a>
+                    <a href="#">Blog</a>
+                </div>
+
+                <div class="menu-section">
+                    <h3>Contact Us</h3>
+                    <a href="reach-out.html">Reach Out</a>
+                    <a href="https://calendly.com/kateleo-mail/30min" target="_blank">Schedule a Meeting</a>
+                </div>
+            </div>
+
+            <hr class="menu-divider">
+
+            <div class="menu-footer-links">
+                <a href="#" class="demo-cta-btn">Request Demo</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Demo Modal -->
+    <div class="demo-modal-overlay" id="demoModal">
+        <!-- Reused modal content from index.html -->
+        <div class="demo-modal-card">
+            <span class="demo-modal-close">Close</span>
+            <h2 class="demo-modal-title">REQUEST DEMO VERSION <span>FOR FREE</span></h2>
+            <p class="demo-modal-subtitle">
+                For further information, please provide your company name, your name, position (optional), and how you
+                can be contacted (email, phone, messenger).
+            </p>
+            <form class="demo-modal-form">
+                <div class="demo-modal-row">
+                    <div class="demo-modal-group halved">
+                        <label>Name (required)</label>
+                        <input type="text" placeholder="Name" required>
+                    </div>
+                    <div class="demo-modal-group halved">
+                        <label>Email (required)</label>
+                        <input type="email" placeholder="Email" required>
+                    </div>
+                </div>
+                <div class="demo-modal-row">
+                    <div class="demo-modal-group halved">
+                        <label>Company name (required)</label>
+                        <input type="text" placeholder="Company name" required>
+                    </div>
+                    <div class="demo-modal-group halved">
+                        <label>Position</label>
+                        <input type="text" placeholder="Position">
+                    </div>
+                </div>
+                <div class="demo-modal-row contact-row">
+                    <div class="demo-modal-group halved">
+                        <label>Phone</label>
+                        <input type="tel" placeholder="Phone">
+                    </div>
+                    <div class="demo-modal-group halved demo-modal-messenger-group">
+                        <label style="visibility: hidden;">Messenger</label>
+                        <div class="demo-modal-messenger-combo">
+                            <div class="demo-modal-messenger-selector">
+                                <span class="demo-modal-messenger-selector-icon" data-messenger="telegram">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M21.0571 5.46706C21.0571 5.46706 22.8286 4.7936 22.6857 6.47724C22.6381 7.2185 22.1619 9.80101 21.8048 11.6529L20.5905 19.3468C20.5905 19.3468 20.4952 20.4074 19.6619 20.6178C18.8286 20.8283 17.5667 19.9862 17.3524 19.8178C17.1619 19.6704 14.1619 17.7757 13.0905 16.8494C12.781 16.5757 12.4476 16.0284 13.1381 15.481L17.7095 11.1685C18.2333 10.6632 18.7571 9.48429 16.5905 10.9579L10.381 15.1442C10.381 15.1442 9.69048 15.5863 8.38095 15.1863L5.59524 14.3232C5.59524 14.3232 4.57143 14.0074 4.54762 13.2285C4.52381 12.4495 5.7619 12.0074 5.7619 12.0074L20.2 6.56179C20.2 6.56179 21.0571 6.22495 21.0571 5.46706Z"
+                                            fill="#2AA0F5" />
+                                    </svg>
+                                </span>
+                            </div>
+                            <input type="text" class="demo-modal-messenger-input-field" placeholder="Telegram handle"
+                                data-messenger="telegram">
+                        </div>
+                    </div>
+                </div>
+                <div class="demo-modal-checkbox">
+                    <input type="checkbox" id="modal-terms" required>
+                    <label for="modal-terms">I accept the Terms</label>
+                </div>
+                <button type="submit" class="demo-modal-submit-btn">Try for free</button>
+            </form>
+        </div>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="script.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+    </script>
+</body>
+
+</html>
